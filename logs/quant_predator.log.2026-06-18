@@ -1,0 +1,231 @@
+[DEBUG   ] 2026-06-18 20:34:10  asyncio  Using proactor: IocpProactor
+[DEBUG   ] 2026-06-18 20:34:10  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:34:10  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:34:10  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-18 20:34:14  git.util  sys.platform='win32', git_executable='git'
+[INFO    ] 2026-06-18 20:34:15  __main__  W&B run 'eurusd_20260618_203410' initialised — https://wandb.ai/mdwasifulhoque-universiti-teknologi-malaysia/quant-predator-v2/runs/344oolhw
+[INFO    ] 2026-06-18 20:34:15  __main__  Connecting to MT5...
+[INFO    ] 2026-06-18 20:34:20  __main__  Fetching 50,000 EURUSD H1 bars...
+[INFO    ] 2026-06-18 20:34:20  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 20:34:20  data.fetcher  Fetched 50,000 bars (2018-05-29 06:00:00 → 2026-06-18 15:00:00)
+[INFO    ] 2026-06-18 20:34:20  __main__  Building Multi-Timeframe Feature Matrix...
+[INFO    ] 2026-06-18 20:34:20  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 20:34:21  data.feature_engineer  Feature matrix complete: 45,258 bars | 35 features | 4,742 warmup bars removed
+[INFO    ] 2026-06-18 20:34:21  __main__  Effective dataset after warmup: 45,258 bars
+[INFO    ] 2026-06-18 20:34:21  __main__  Split — train: 31,680 | val: 6,788 | OOS test: 6,790 bars
+[INFO    ] 2026-06-18 20:34:21  __main__  Creating 4 parallel training environments...
+[INFO    ] 2026-06-18 20:34:24  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,680 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:34:26  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,680 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:34:29  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,680 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:34:33  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,680 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:34:33  __main__  SubprocVecEnv active (parallel CPU workers).
+[INFO    ] 2026-06-18 20:34:33  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,788 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:34:35  __main__  GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (cuda)
+[INFO    ] 2026-06-18 20:34:35  __main__  
+  ==========================================================
+  V2.1 CONVERGENCE TARGETS (watch in W&B dashboard)
+  ──────────────────────────────────────────────────────────
+  clip_fraction  target < 0.15  (run 1: 0.374 — thrashing)
+  approx_kl      target < 0.020  (run 1: 0.051 — 2.6x safe)
+  explained_var  target > 0.80  (run 1: 0.852 — already good)
+  entropy_loss   target -0.5 to -1.0   (exploration health)
+  ──────────────────────────────────────────────────────────
+  Entry cost penalty:  -0.05 (was -0.30 — now -0.05)
+  LR schedule:         1e-04 → 1e-05
+  ==========================================================
+[DEBUG   ] 2026-06-18 20:36:02  asyncio  Using proactor: IocpProactor
+[DEBUG   ] 2026-06-18 20:36:02  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:36:02  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:36:02  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-18 20:36:06  git.util  sys.platform='win32', git_executable='git'
+[INFO    ] 2026-06-18 20:36:10  __main__  W&B run 'eurusd_20260618_203602' initialised — https://wandb.ai/mdwasifulhoque-universiti-teknologi-malaysia/quant-predator-v2/runs/ovqgigkx
+[INFO    ] 2026-06-18 20:36:10  __main__  Connecting to MT5...
+[INFO    ] 2026-06-18 20:36:10  __main__  Fetching 50,000 EURUSD H1 bars...
+[INFO    ] 2026-06-18 20:36:10  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 20:36:19  data.fetcher  Fetched 50,000 bars (2018-05-29 21:00:00 → 2026-06-18 15:00:00)
+[INFO    ] 2026-06-18 20:36:19  __main__  Building Multi-Timeframe Feature Matrix...
+[INFO    ] 2026-06-18 20:36:19  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 20:36:19  data.feature_engineer  Feature matrix complete: 45,273 bars | 35 features | 4,727 warmup bars removed
+[INFO    ] 2026-06-18 20:36:19  __main__  Effective dataset after warmup: 45,273 bars
+[INFO    ] 2026-06-18 20:36:19  __main__  Split — train: 31,691 | val: 6,790 | OOS test: 6,792 bars
+[INFO    ] 2026-06-18 20:36:19  __main__  Creating 4 parallel training environments...
+[INFO    ] 2026-06-18 20:36:22  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:36:25  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:36:28  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:36:31  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:36:31  __main__  SubprocVecEnv active (parallel CPU workers).
+[INFO    ] 2026-06-18 20:36:31  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:36:32  __main__  GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (cuda)
+[INFO    ] 2026-06-18 20:36:32  __main__  
+  ==========================================================
+  V2.1 CONVERGENCE TARGETS (watch in W&B dashboard)
+  ──────────────────────────────────────────────────────────
+  clip_fraction  target < 0.15  (run 1: 0.374 — thrashing)
+  approx_kl      target < 0.020  (run 1: 0.051 — 2.6x safe)
+  explained_var  target > 0.80  (run 1: 0.852 — already good)
+  entropy_loss   target -0.5 to -1.0   (exploration health)
+  ──────────────────────────────────────────────────────────
+  Entry cost penalty:  -0.05 (was -0.30 — now -0.05)
+  LR schedule:         1e-04 → 1e-05
+  ==========================================================
+[DEBUG   ] 2026-06-18 20:37:36  asyncio  Using proactor: IocpProactor
+[DEBUG   ] 2026-06-18 20:37:36  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:37:36  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-18 20:37:36  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-18 20:37:40  git.util  sys.platform='win32', git_executable='git'
+[INFO    ] 2026-06-18 20:37:40  __main__  W&B run 'eurusd_20260618_203736' initialised — https://wandb.ai/mdwasifulhoque-universiti-teknologi-malaysia/quant-predator-v2/runs/a0jm4da9
+[INFO    ] 2026-06-18 20:37:40  __main__  Connecting to MT5...
+[INFO    ] 2026-06-18 20:37:40  __main__  Fetching 50,000 EURUSD H1 bars...
+[INFO    ] 2026-06-18 20:37:40  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 20:37:40  data.fetcher  Fetched 50,000 bars (2018-05-29 21:00:00 → 2026-06-18 15:00:00)
+[INFO    ] 2026-06-18 20:37:40  __main__  Building Multi-Timeframe Feature Matrix...
+[INFO    ] 2026-06-18 20:37:40  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 20:37:41  data.feature_engineer  Feature matrix complete: 45,273 bars | 35 features | 4,727 warmup bars removed
+[INFO    ] 2026-06-18 20:37:41  __main__  Effective dataset after warmup: 45,273 bars
+[INFO    ] 2026-06-18 20:37:41  __main__  Split — train: 31,691 | val: 6,790 | OOS test: 6,792 bars
+[INFO    ] 2026-06-18 20:37:41  __main__  Creating 4 parallel training environments...
+[INFO    ] 2026-06-18 20:37:44  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:37:46  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:37:49  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:37:52  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:37:52  __main__  SubprocVecEnv active (parallel CPU workers).
+[INFO    ] 2026-06-18 20:37:52  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 20:37:53  __main__  GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (cuda)
+[INFO    ] 2026-06-18 20:37:53  __main__  
+  ==========================================================
+  V2.1 CONVERGENCE TARGETS (watch in W&B dashboard)
+  ──────────────────────────────────────────────────────────
+  clip_fraction  target < 0.15  (run 1: 0.374 — thrashing)
+  approx_kl      target < 0.020  (run 1: 0.051 — 2.6x safe)
+  explained_var  target > 0.80  (run 1: 0.852 — already good)
+  entropy_loss   target -0.5 to -1.0   (exploration health)
+  ──────────────────────────────────────────────────────────
+  Entry cost penalty:  -0.05 (was -0.30 — now -0.05)
+  LR schedule:         1e-04 → 1e-05
+  ==========================================================
+[INFO    ] 2026-06-18 20:37:53  __main__  Training started — 2,500,000 timesteps. Estimated ~80-95 min on RTX 3050.
+[INFO    ] 2026-06-18 20:42:06  __main__  [iter   10] clip=0.091 ✅  kl=0.0045 ✅  ev=0.292  ent=-1.029  lr=9.73e-05
+[INFO    ] 2026-06-18 20:45:47  __main__  [iter   20] clip=0.109 ✅  kl=0.0054 ✅  ev=0.343  ent=-1.002  lr=9.44e-05
+[INFO    ] 2026-06-18 20:49:22  __main__  [iter   30] clip=0.117 ✅  kl=0.0055 ✅  ev=0.320  ent=-0.964  lr=9.14e-05
+[INFO    ] 2026-06-18 20:58:00  __main__  [iter   50] clip=0.129 ✅  kl=0.0067 ✅  ev=0.378  ent=-0.971  lr=8.55e-05
+[INFO    ] 2026-06-18 21:02:01  __main__  [iter   60] clip=0.165 ✅  kl=0.0081 ✅  ev=0.183  ent=-0.969  lr=8.26e-05
+[INFO    ] 2026-06-18 21:07:02  __main__  [iter   70] clip=0.169 ✅  kl=0.0082 ✅  ev=0.226  ent=-0.964  lr=7.97e-05
+[INFO    ] 2026-06-18 21:19:06  __main__  [iter   90] clip=0.139 ✅  kl=0.0073 ✅  ev=0.418  ent=-0.984  lr=7.38e-05
+[INFO    ] 2026-06-18 21:24:12  __main__  [iter  100] clip=0.168 ✅  kl=0.0086 ✅  ev=0.487  ent=-0.964  lr=7.08e-05
+[INFO    ] 2026-06-18 21:29:07  __main__  [iter  110] clip=0.172 ✅  kl=0.0089 ✅  ev=0.488  ent=-0.940  lr=6.79e-05
+[INFO    ] 2026-06-18 21:40:02  __main__  [iter  130] clip=0.174 ✅  kl=0.0089 ✅  ev=0.611  ent=-0.942  lr=6.20e-05
+[INFO    ] 2026-06-18 21:45:06  __main__  [iter  140] clip=0.158 ✅  kl=0.0079 ✅  ev=0.640  ent=-0.970  lr=5.90e-05
+[INFO    ] 2026-06-18 21:49:48  __main__  [iter  150] clip=0.198 ✅  kl=0.0104 ✅  ev=0.668  ent=-0.976  lr=5.61e-05
+[INFO    ] 2026-06-18 22:01:14  __main__  [iter  170] clip=0.183 ✅  kl=0.0090 ✅  ev=0.685  ent=-0.985  lr=5.02e-05
+[INFO    ] 2026-06-18 22:05:21  __main__  [iter  180] clip=0.154 ✅  kl=0.0080 ✅  ev=0.733  ent=-0.976  lr=4.72e-05
+[INFO    ] 2026-06-18 22:09:19  __main__  [iter  190] clip=0.155 ✅  kl=0.0082 ✅  ev=0.648  ent=-0.972  lr=4.43e-05
+[INFO    ] 2026-06-18 22:19:39  __main__  [iter  210] clip=0.159 ✅  kl=0.0085 ✅  ev=0.784  ent=-0.963  lr=3.84e-05
+[INFO    ] 2026-06-18 22:25:02  __main__  [iter  220] clip=0.147 ✅  kl=0.0079 ✅  ev=0.789  ent=-0.959  lr=3.54e-05
+[INFO    ] 2026-06-18 22:30:02  __main__  [iter  230] clip=0.175 ✅  kl=0.0097 ✅  ev=0.790  ent=-0.950  lr=3.25e-05
+[INFO    ] 2026-06-18 22:41:54  __main__  [iter  250] clip=0.149 ✅  kl=0.0079 ✅  ev=0.862  ent=-0.938  lr=2.66e-05
+[INFO    ] 2026-06-18 22:47:11  __main__  [iter  260] clip=0.153 ✅  kl=0.0078 ✅  ev=0.849  ent=-0.948  lr=2.36e-05
+[INFO    ] 2026-06-18 22:52:03  __main__  [iter  270] clip=0.142 ✅  kl=0.0083 ✅  ev=0.871  ent=-0.914  lr=2.07e-05
+[INFO    ] 2026-06-18 23:02:32  __main__  [iter  290] clip=0.079 ✅  kl=0.0046 ✅  ev=0.749  ent=-0.988  lr=1.48e-05
+[INFO    ] 2026-06-18 23:07:35  __main__  [iter  300] clip=0.097 ✅  kl=0.0059 ✅  ev=0.889  ent=-0.953  lr=1.18e-05
+[INFO    ] 2026-06-18 23:11:09  __main__  Training complete.
+[INFO    ] 2026-06-18 23:11:09  __main__  Model   → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\ppo_model.zip
+[INFO    ] 2026-06-18 23:11:09  __main__  VecNorm → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\vec_normalize.pkl
+[INFO    ] 2026-06-18 23:11:09  __main__  Best checkpoint → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\checkpoints/best_model.zip/best_model.zip
+[INFO    ] 2026-06-18 23:11:10  __main__  Model artifacts uploaded to W&B.
+[INFO    ] 2026-06-18 23:11:10  __main__  Running out-of-sample evaluation on held-out test set...
+[INFO    ] 2026-06-18 23:11:10  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,792 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:11:10  engine.backtester  OOS Test: Simulating 6,792 bars on EURUSD...
+[INFO    ] 2026-06-18 23:11:38  engine.backtester  OOS Test complete. Final balance: $4,787.71 | Trades executed: 418
+[INFO    ] 2026-06-18 23:11:38  __main__  TRADE FREQUENCY: 1.1 trades/day (21 bars/trade) | Target: 2-3/day (8-12 bars/trade)
+[INFO    ] 2026-06-18 23:11:38  __main__  Frequency verdict: ⚠️ Too infrequent
+[WARNING ] 2026-06-18 23:11:38  __main__  VALIDATION FAILED ❌  Sharpe: -1.96 | MaxDD: 61.3%. Try best checkpoint at D:\Softwares\GitHub\quant-predator-v2\models\eurusd\checkpoints/best_model.zip/best_model.zip, or run engine/optuna_search.py for hyperparameter tuning.
+[INFO    ] 2026-06-18 23:11:42  __main__  W&B run complete — run finished
+[INFO    ] 2026-06-18 23:19:30  data.fetcher  Fetching 15,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 23:19:30  data.fetcher  Fetched 15,000 bars (2024-01-17 21:00:00 → 2026-06-18 18:00:00)
+[INFO    ] 2026-06-18 23:19:30  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:19:30  data.feature_engineer  Feature matrix complete: 10,293 bars | 35 features | 4,707 warmup bars removed
+[INFO    ] 2026-06-18 23:19:30  engine.rl_env  ForexTradingEnv v2.1 initialised: 10,293 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:21:29  data.fetcher  Fetching 15,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 23:21:29  data.fetcher  Fetched 15,000 bars (2024-01-17 21:00:00 → 2026-06-18 18:00:00)
+[INFO    ] 2026-06-18 23:21:29  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:21:30  data.feature_engineer  Feature matrix complete: 10,293 bars | 35 features | 4,707 warmup bars removed
+[INFO    ] 2026-06-18 23:21:30  engine.rl_env  ForexTradingEnv v2.1 initialised: 10,293 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:22:00  data.fetcher  Fetching 15,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 23:22:00  data.fetcher  Fetched 15,000 bars (2024-01-17 21:00:00 → 2026-06-18 18:00:00)
+[INFO    ] 2026-06-18 23:22:00  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:22:01  data.feature_engineer  Feature matrix complete: 10,293 bars | 35 features | 4,707 warmup bars removed
+[INFO    ] 2026-06-18 23:22:01  engine.rl_env  ForexTradingEnv v2.1 initialised: 10,293 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:23:40  data.fetcher  Fetching 15,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 23:23:40  data.fetcher  Fetched 15,000 bars (2024-01-17 21:00:00 → 2026-06-18 18:00:00)
+[INFO    ] 2026-06-18 23:23:40  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:23:40  data.feature_engineer  Feature matrix complete: 10,293 bars | 35 features | 4,707 warmup bars removed
+[INFO    ] 2026-06-18 23:23:40  engine.rl_env  ForexTradingEnv v2.1 initialised: 10,293 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:25:12  data.fetcher  Fetching 15,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-18 23:25:12  data.fetcher  Fetched 15,000 bars (2024-01-17 21:00:00 → 2026-06-18 18:00:00)
+[INFO    ] 2026-06-18 23:25:12  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:25:13  data.feature_engineer  Feature matrix complete: 10,293 bars | 35 features | 4,707 warmup bars removed
+[INFO    ] 2026-06-18 23:25:13  engine.rl_env  ForexTradingEnv v2.1 initialised: 10,293 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:25:14  __main__  Backtest: Simulating 10,293 bars on EURUSD...
+[INFO    ] 2026-06-18 23:25:39  __main__  Backtest complete. Final balance: $16,358.91 | Trades executed: 237
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023EEEC19E80>
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Thu, 18 Jun 2026 15:46:13 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-18 23:46:13  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-18 23:46:13  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-18 23:46:13  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-18 23:46:13  __main__  Starting Quant Predator v2 — EURUSD H1
+[INFO    ] 2026-06-18 23:46:13  broker.mt5_gateway  MT5 connected — XM Global Limited | Account: 1301627118 | Balance: $250.00
+[INFO    ] 2026-06-18 23:46:13  __main__  Session opening balance: $250.00
+[INFO    ] 2026-06-18 23:46:13  __main__  Loading PPO model and VecNormalize stats...
+[INFO    ] 2026-06-18 23:46:13  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:46:14  data.feature_engineer  Feature matrix complete: 1,363 bars | 35 features | 4,662 warmup bars removed
+[INFO    ] 2026-06-18 23:46:14  engine.rl_env  ForexTradingEnv v2.1 initialised: 1,363 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-18 23:46:16  __main__  Model loaded successfully.
+[INFO    ] 2026-06-18 23:46:16  __main__  Startup: no open positions found. Starting flat.
+[INFO    ] 2026-06-18 23:46:16  __main__  Reconciling trade journal with broker history...
+[INFO    ] 2026-06-18 23:46:16  ledger.reconciler  Starting ledger reconciliation — EURUSD | last 90 days
+[WARNING ] 2026-06-18 23:46:16  ledger.reconciler  No deals found for magic 777777 / EURUSD in the last 90 days. Journal not modified.
+[INFO    ] 2026-06-18 23:46:16  __main__  V2 EXECUTION ENGINE ONLINE — entering main loop.
+[INFO    ] 2026-06-18 23:46:16  __main__  New H1 bar detected at 2026-06-18 18:00:00. Running MTF analysis...
+[INFO    ] 2026-06-18 23:46:16  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-18 23:46:16  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-18 23:46:16  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-18 23:46:16  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-18 23:46:17  data.feature_engineer  Feature matrix complete: 1,363 bars | 35 features | 4,662 warmup bars removed
+[INFO    ] 2026-06-18 23:46:17  __main__  Signal: HOLD | MTF: +0 | RSI: 37.7
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000212CEC49E80>
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Thu, 18 Jun 2026 15:47:07 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-18 23:47:07  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-18 23:47:07  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-18 23:47:07  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021972A55E80>
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Thu, 18 Jun 2026 15:50:39 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-18 23:50:39  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-18 23:50:39  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-18 23:50:39  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3

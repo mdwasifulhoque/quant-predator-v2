@@ -1,0 +1,106 @@
+[DEBUG   ] 2026-06-16 18:00:29  asyncio  Using proactor: IocpProactor
+[DEBUG   ] 2026-06-16 18:00:29  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2\engine, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-16 18:00:29  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2\engine, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-16 18:00:29  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-16 18:00:33  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-16 18:00:33  urllib3.connectionpool  Starting new HTTPS connection (1): o151352.ingest.sentry.io:443
+[DEBUG   ] 2026-06-16 18:05:46  asyncio  Using proactor: IocpProactor
+[DEBUG   ] 2026-06-16 18:05:46  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-16 18:05:46  git.cmd  Popen(['git', 'version'], cwd=D:\Softwares\GitHub\quant-predator-v2, stdin=None, shell=False, universal_newlines=False)
+[DEBUG   ] 2026-06-16 18:05:46  git.util  sys.platform='win32', git_executable='git'
+[DEBUG   ] 2026-06-16 18:05:50  git.util  sys.platform='win32', git_executable='git'
+[INFO    ] 2026-06-16 18:05:51  __main__  W&B run 'eurusd_20260616_180546' initialised — https://wandb.ai/mdwasifulhoque-universiti-teknologi-malaysia/quant-predator-v2/runs/7glnbu9a
+[INFO    ] 2026-06-16 18:05:51  __main__  Connecting to MT5...
+[INFO    ] 2026-06-16 18:05:56  __main__  Fetching 50,000 EURUSD H1 bars...
+[INFO    ] 2026-06-16 18:05:56  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-16 18:05:56  data.fetcher  Fetched 50,000 bars (2018-05-25 19:00:00 → 2026-06-16 13:00:00)
+[INFO    ] 2026-06-16 18:05:56  __main__  Building Multi-Timeframe Feature Matrix...
+[INFO    ] 2026-06-16 18:05:56  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-16 18:05:56  data.feature_engineer  Feature matrix complete: 45,271 bars | 35 features | 4,729 warmup bars removed
+[INFO    ] 2026-06-16 18:05:56  __main__  Effective dataset after warmup: 45,271 bars
+[INFO    ] 2026-06-16 18:05:56  __main__  Split — train: 31,689 | val: 6,790 | OOS test: 6,792 bars
+[INFO    ] 2026-06-16 18:05:56  __main__  Creating 4 parallel training environments...
+[INFO    ] 2026-06-16 18:05:59  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,689 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 18:06:02  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,689 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 18:06:05  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,689 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 18:06:09  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,689 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 18:06:09  __main__  SubprocVecEnv active (parallel CPU workers).
+[INFO    ] 2026-06-16 18:06:09  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 18:06:11  __main__  GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (cuda)
+[INFO    ] 2026-06-16 18:06:11  __main__  
+  ==========================================================
+  V2.1 CONVERGENCE TARGETS (watch in W&B dashboard)
+  ──────────────────────────────────────────────────────────
+  clip_fraction  target < 0.15  (run 1: 0.374 — thrashing)
+  approx_kl      target < 0.020  (run 1: 0.051 — 2.6x safe)
+  explained_var  target > 0.80  (run 1: 0.852 — already good)
+  entropy_loss   target -0.5 to -1.0   (exploration health)
+  ──────────────────────────────────────────────────────────
+  Entry cost penalty:  -0.05 (was -0.30 — now -0.05)
+  LR schedule:         1e-04 → 1e-05
+  ==========================================================
+[INFO    ] 2026-06-16 18:06:11  __main__  Training started — 2,500,000 timesteps. Estimated ~80-95 min on RTX 3050.
+[INFO    ] 2026-06-16 18:09:04  __main__  [iter   10] clip=0.070 ✅  kl=0.0040 ✅  ev=0.234  ent=-1.027  lr=9.73e-05
+[INFO    ] 2026-06-16 18:14:58  __main__  [iter   30] clip=0.105 ✅  kl=0.0058 ✅  ev=0.096  ent=-0.942  lr=9.14e-05
+[INFO    ] 2026-06-16 18:21:25  __main__  [iter   50] clip=0.139 ✅  kl=0.0075 ✅  ev=0.606  ent=-0.917  lr=8.55e-05
+[INFO    ] 2026-06-16 18:30:09  __main__  [iter   70] clip=0.143 ✅  kl=0.0073 ✅  ev=0.433  ent=-0.909  lr=7.97e-05
+[INFO    ] 2026-06-16 18:38:50  __main__  [iter   90] clip=0.182 ✅  kl=0.0092 ✅  ev=0.723  ent=-0.967  lr=7.38e-05
+[INFO    ] 2026-06-16 18:46:22  __main__  [iter  110] clip=0.184 ✅  kl=0.0095 ✅  ev=0.615  ent=-0.974  lr=6.79e-05
+[INFO    ] 2026-06-16 18:53:58  __main__  [iter  130] clip=0.177 ✅  kl=0.0092 ✅  ev=0.248  ent=-0.985  lr=6.20e-05
+[INFO    ] 2026-06-16 19:00:00  __main__  [iter  150] clip=0.156 ✅  kl=0.0080 ✅  ev=0.689  ent=-0.957  lr=5.61e-05
+[INFO    ] 2026-06-16 19:05:47  __main__  [iter  170] clip=0.169 ✅  kl=0.0087 ✅  ev=0.624  ent=-0.957  lr=5.02e-05
+[INFO    ] 2026-06-16 19:11:46  __main__  [iter  190] clip=0.182 ✅  kl=0.0090 ✅  ev=0.730  ent=-0.962  lr=4.43e-05
+[INFO    ] 2026-06-16 19:18:16  __main__  [iter  210] clip=0.158 ✅  kl=0.0080 ✅  ev=0.733  ent=-0.946  lr=3.84e-05
+[INFO    ] 2026-06-16 19:25:05  __main__  [iter  230] clip=0.150 ✅  kl=0.0085 ✅  ev=0.767  ent=-0.974  lr=3.25e-05
+[INFO    ] 2026-06-16 19:31:10  __main__  [iter  250] clip=0.149 ✅  kl=0.0082 ✅  ev=0.787  ent=-0.941  lr=2.66e-05
+[INFO    ] 2026-06-16 19:37:00  __main__  [iter  270] clip=0.132 ✅  kl=0.0072 ✅  ev=0.881  ent=-0.952  lr=2.07e-05
+[INFO    ] 2026-06-16 19:42:39  __main__  [iter  290] clip=0.099 ✅  kl=0.0056 ✅  ev=0.823  ent=-0.965  lr=1.48e-05
+[INFO    ] 2026-06-16 19:47:13  __main__  Training complete.
+[INFO    ] 2026-06-16 19:47:13  __main__  Model   → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\ppo_model.zip
+[INFO    ] 2026-06-16 19:47:13  __main__  VecNorm → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\vec_normalize.pkl
+[INFO    ] 2026-06-16 19:47:13  __main__  Best checkpoint → D:\Softwares\GitHub\quant-predator-v2\models\eurusd\checkpoints/best_model.zip
+[INFO    ] 2026-06-16 19:47:15  __main__  Model artifacts uploaded to W&B.
+[INFO    ] 2026-06-16 19:47:15  __main__  Running out-of-sample evaluation on held-out test set...
+[INFO    ] 2026-06-16 19:47:15  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,792 bars | 35 features | obs_dim=842 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 19:47:15  engine.backtester  OOS Test: Simulating 6,792 bars on EURUSD...
+[INFO    ] 2026-06-16 19:47:31  engine.backtester  OOS Test complete. Final balance: $7,351.04 | Trades executed: 408
+[INFO    ] 2026-06-16 19:47:31  __main__  TRADE FREQUENCY: 1.1 trades/day (22 bars/trade) | Target: 2-3/day (8-12 bars/trade)
+[INFO    ] 2026-06-16 19:47:31  __main__  Frequency verdict: ⚠️ Too infrequent
+[WARNING ] 2026-06-16 19:47:31  __main__  VALIDATION FAILED ❌  Sharpe: -0.68 | MaxDD: 33.2%. Try best checkpoint at D:\Softwares\GitHub\quant-predator-v2\models\eurusd\checkpoints/best_model.zip, or run engine/optuna_search.py for hyperparameter tuning.
+[INFO    ] 2026-06-16 19:47:38  __main__  W&B run complete — run finished
+[INFO    ] 2026-06-16 20:40:52  __main__  Connecting to MT5 for data fetch...
+[INFO    ] 2026-06-16 20:40:52  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-16 20:40:52  data.fetcher  Fetched 50,000 bars (2018-05-25 21:00:00 → 2026-06-16 15:00:00)
+[INFO    ] 2026-06-16 20:40:52  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-16 20:40:52  data.feature_engineer  Feature matrix complete: 45,273 bars | 35 features | 4,727 warmup bars removed
+[INFO    ] 2026-06-16 20:40:52  __main__  Data ready — train: 31,691 | val: 6,790 bars | 15 trials × 400,000 steps each
+[INFO    ] 2026-06-16 20:40:52  __main__  Starting Optuna study 'qp_v2_eurusd'. Estimated time: 255-300 minutes.
+[INFO    ] 2026-06-16 20:40:52  __main__  
+Trial 0: {'learning_rate': 9.781801964118509e-05, 'ent_coef': 0.1435928598332891, 'clip_range': 0.20979909127171076, 'n_steps': 1024, 'batch_size': 256, 'entry_cost': -0.05086983910855364, 'patience_bonus': 0.001185260448662222, 'mtf_threshold': 3, 'min_rr_ratio': 2.7486639612006325}
+[INFO    ] 2026-06-16 20:40:52  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:40:52  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:40:52  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:45:21  __main__  Connecting to MT5 for data fetch...
+[INFO    ] 2026-06-16 20:45:21  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-16 20:45:21  data.fetcher  Fetched 50,000 bars (2018-05-25 21:00:00 → 2026-06-16 15:00:00)
+[INFO    ] 2026-06-16 20:45:21  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-16 20:45:21  data.feature_engineer  Feature matrix complete: 45,273 bars | 35 features | 4,727 warmup bars removed
+[INFO    ] 2026-06-16 20:45:21  __main__  Data ready — train: 31,691 | val: 6,790 bars | 15 trials × 400,000 steps each
+[INFO    ] 2026-06-16 20:45:21  __main__  Starting Optuna study 'qp_v2_eurusd'. Estimated time: 255-300 minutes.
+[INFO    ] 2026-06-16 20:45:21  __main__  
+Trial 0: {'learning_rate': 9.781801964118509e-05, 'ent_coef': 0.1435928598332891, 'clip_range': 0.20979909127171076, 'n_steps': 1024, 'batch_size': 256, 'entry_cost': -0.05086983910855364, 'patience_bonus': 0.001185260448662222, 'mtf_threshold': 3, 'min_rr_ratio': 2.7486639612006325}
+[INFO    ] 2026-06-16 20:45:21  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:45:21  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:45:21  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:55:01  __main__  Connecting to MT5 for data fetch...
+[INFO    ] 2026-06-16 20:55:01  data.fetcher  Fetching 50,000 H1 bars for EURUSD...
+[INFO    ] 2026-06-16 20:55:01  data.fetcher  Fetched 50,000 bars (2018-05-25 21:00:00 → 2026-06-16 15:00:00)
+[INFO    ] 2026-06-16 20:55:01  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-16 20:55:01  data.feature_engineer  Feature matrix complete: 45,273 bars | 35 features | 4,727 warmup bars removed
+[INFO    ] 2026-06-16 20:55:01  __main__  Data ready — train: 31,691 | val: 6,790 bars | 15 trials × 400,000 steps each
+[INFO    ] 2026-06-16 20:55:01  __main__  Starting Optuna study 'qp_v2_eurusd'. Estimated time: 255-300 minutes.
+[INFO    ] 2026-06-16 20:55:01  __main__  
+Trial 0: {'learning_rate': 9.781801964118509e-05, 'ent_coef': 0.1435928598332891, 'clip_range': 0.20979909127171076, 'n_steps': 1024, 'batch_size': 256, 'entry_cost': -0.05086983910855364, 'patience_bonus': 0.001185260448662222, 'mtf_threshold': 3, 'min_rr_ratio': 2.7486639612006325}
+[INFO    ] 2026-06-16 20:55:01  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:55:01  engine.rl_env  ForexTradingEnv v2.1 initialised: 31,691 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars
+[INFO    ] 2026-06-16 20:55:01  engine.rl_env  ForexTradingEnv v2.1 initialised: 6,790 bars | 35 features | obs_dim=842 | min_rr=2.7:1 | min_hold=3 bars

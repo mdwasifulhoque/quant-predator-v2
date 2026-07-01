@@ -1,0 +1,6 @@
+{
+  "auto_trade": true,
+  "symbol": "EURUSD",
+  "timeframe": "H1",
+  "manual_command": "NONE"
+}

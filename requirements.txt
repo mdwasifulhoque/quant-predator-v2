@@ -1,0 +1,64 @@
+# ==============================================================================
+# Quant Predator v2.1 — Dependencies
+# ==============================================================================
+#
+# INSTALLATION ORDER — FOLLOW THIS EXACTLY:
+#
+# STEP 1: PyTorch with CUDA (must come before stable-baselines3)
+#   nvidia-smi                         ← check your CUDA version
+#   CUDA 12.1:
+#     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#   CUDA 11.8:
+#     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#   Verify:
+#     python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+#
+# STEP 2: Install this file
+#   pip install -r requirements.txt
+#
+# STEP 3: Weights & Biases login (free student account)
+#   wandb login                        ← paste your API key from wandb.ai/authorize
+#
+# STEP 4: Ollama (for chat interface — separate install)
+#   https://ollama.com/download
+#   ollama pull llama3
+#   ollama pull qwen2.5-coder:7b       ← for Cline coding agent
+#
+# ==============================================================================
+
+# ── Core Machine Learning ──────────────────────────────────────────────────────
+stable-baselines3[extra]>=2.3.0   # PPO + SB3 extras (includes sb3-contrib)
+gymnasium>=0.29.1
+numpy>=1.26.0
+scipy>=1.12.0
+scikit-learn>=1.4.0
+
+# ── Broker & Market Data ───────────────────────────────────────────────────────
+MetaTrader5>=5.0.45               # Windows only
+pandas>=2.1.0
+pandas-ta>=0.3.14b
+
+# ── Experiment Tracking & Hyperparameter Optimisation ─────────────────────────
+wandb>=0.17.0                     # Weights & Biases — free student tier
+optuna>=3.6.0                     # Bayesian hyperparameter search
+optuna-dashboard>=0.15.0          # Local Optuna web dashboard (optional)
+
+# ── Strategy Validation ────────────────────────────────────────────────────────
+vectorbt>=0.26.2                  # Vectorized backtesting (optional but fast)
+# Note: vectorbt may conflict with some numpy versions.
+# If install fails: pip install vectorbt --no-deps
+
+# ── Configuration & I/O ───────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+requests>=2.31.0
+pytz>=2024.1
+
+# ── Dashboard ─────────────────────────────────────────────────────────────────
+streamlit>=1.35.0
+plotly>=5.20.0
+
+# ── Local LLM ─────────────────────────────────────────────────────────────────
+ollama>=0.2.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+tqdm>=4.66.0

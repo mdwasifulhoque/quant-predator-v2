@@ -1,0 +1,206 @@
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000279E5B79E80>
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 03:43:59 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 11:43:59  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 11:43:59  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 11:43:59  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 11:43:59  __main__  Starting Quant Predator v2 — EURUSD H1
+[INFO    ] 2026-06-19 11:44:06  broker.mt5_gateway  MT5 connected — XM Global Limited | Account: 1301627118 | Balance: $250.00
+[INFO    ] 2026-06-19 11:44:06  __main__  Session opening balance: $250.00
+[INFO    ] 2026-06-19 11:44:06  __main__  Loading PPO model and VecNormalize stats...
+[INFO    ] 2026-06-19 11:44:06  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 11:44:07  data.feature_engineer  Feature matrix complete: 1,351 bars | 35 features | 4,674 warmup bars removed
+[INFO    ] 2026-06-19 11:44:07  engine.rl_env  ForexTradingEnv v2.1 initialised: 1,351 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-19 11:44:11  __main__  Model loaded successfully.
+[INFO    ] 2026-06-19 11:44:11  __main__  Startup: no open positions found. Starting flat.
+[INFO    ] 2026-06-19 11:44:11  __main__  Reconciling trade journal with broker history...
+[INFO    ] 2026-06-19 11:44:11  ledger.reconciler  Starting ledger reconciliation — EURUSD | last 90 days
+[WARNING ] 2026-06-19 11:44:11  ledger.reconciler  No deals found for magic 777777 / EURUSD in the last 90 days. Journal not modified.
+[INFO    ] 2026-06-19 11:44:11  __main__  V2 EXECUTION ENGINE ONLINE — entering main loop.
+[INFO    ] 2026-06-19 11:44:11  __main__  New H1 bar detected at 2026-06-19 06:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 11:44:11  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-19 11:44:11  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-19 11:44:11  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-19 11:44:11  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 11:44:11  data.feature_engineer  Feature matrix complete: 1,351 bars | 35 features | 4,674 warmup bars removed
+[INFO    ] 2026-06-19 11:44:12  __main__  Signal: HOLD | MTF: +0 | RSI: 32.7
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000014CB2079D30>
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 03:48:25 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 11:48:25  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 11:48:25  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 11:48:25  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 12:00:01  __main__  New H1 bar detected at 2026-06-19 07:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 12:00:01  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 12:00:01  data.feature_engineer  Feature matrix complete: 1,352 bars | 35 features | 4,673 warmup bars removed
+[INFO    ] 2026-06-19 12:00:01  __main__  Signal: HOLD | MTF: +0 | RSI: 28.5
+[ERROR   ] 2026-06-19 12:24:53  ledger.state_manager  Atomic JSON write failed for D:\Softwares\GitHub\quant-predator-v2\app\state\state.json: [WinError 5] Access is denied: 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\tmp12bg11v4.tmp' -> 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\state.json'
+[ERROR   ] 2026-06-19 12:26:39  ledger.state_manager  Atomic JSON write failed for D:\Softwares\GitHub\quant-predator-v2\app\state\state.json: [WinError 5] Access is denied: 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\tmpe29web9g.tmp' -> 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\state.json'
+[ERROR   ] 2026-06-19 12:40:05  ledger.state_manager  Atomic JSON write failed for D:\Softwares\GitHub\quant-predator-v2\app\state\state.json: [WinError 5] Access is denied: 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\tmp_kadkmw4.tmp' -> 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\state.json'
+[ERROR   ] 2026-06-19 12:55:15  ledger.state_manager  Atomic JSON write failed for D:\Softwares\GitHub\quant-predator-v2\app\state\state.json: [WinError 5] Access is denied: 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\tmptt_0v0hj.tmp' -> 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\state.json'
+[ERROR   ] 2026-06-19 12:56:29  ledger.state_manager  Atomic JSON write failed for D:\Softwares\GitHub\quant-predator-v2\app\state\state.json: [WinError 5] Access is denied: 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\tmpzs8idv27.tmp' -> 'D:\\Softwares\\GitHub\\quant-predator-v2\\app\\state\\state.json'
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000224168C5E80>
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 08:18:21 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 16:18:21  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 16:18:21  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 16:18:21  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 16:18:21  __main__  Starting Quant Predator v2 — EURUSD H1
+[INFO    ] 2026-06-19 16:18:27  broker.mt5_gateway  MT5 connected — XM Global Limited | Account: 1301627118 | Balance: $250.00
+[INFO    ] 2026-06-19 16:18:27  __main__  Session opening balance: $250.00
+[INFO    ] 2026-06-19 16:18:27  __main__  Loading PPO model and VecNormalize stats...
+[INFO    ] 2026-06-19 16:18:27  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 16:18:28  data.feature_engineer  Feature matrix complete: 1,356 bars | 40 features | 4,669 warmup bars removed
+[INFO    ] 2026-06-19 16:18:28  engine.rl_env  ForexTradingEnv v2.1 initialised: 1,356 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-19 16:18:30  __main__  Model loaded successfully.
+[INFO    ] 2026-06-19 16:18:30  __main__  Startup: no open positions found. Starting flat.
+[INFO    ] 2026-06-19 16:18:30  __main__  Reconciling trade journal with broker history...
+[INFO    ] 2026-06-19 16:18:30  ledger.reconciler  Starting ledger reconciliation — EURUSD | last 90 days
+[WARNING ] 2026-06-19 16:18:30  ledger.reconciler  No deals found for magic 777777 / EURUSD in the last 90 days. Journal not modified.
+[INFO    ] 2026-06-19 16:18:30  __main__  V2 EXECUTION ENGINE ONLINE — entering main loop.
+[INFO    ] 2026-06-19 16:18:30  __main__  New H1 bar detected at 2026-06-19 11:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 16:18:30  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-19 16:18:30  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-19 16:18:30  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-19 16:18:30  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 16:18:30  data.feature_engineer  Feature matrix complete: 1,356 bars | 40 features | 4,669 warmup bars removed
+[INFO    ] 2026-06-19 16:18:30  __main__  Signal: HOLD | MTF: +0 | RSI: 37.5
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002B756876270>
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 08:18:51 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 16:18:51  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 16:18:51  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 16:18:51  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.connection  close.started
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.connection  close.complete
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002B75689AFD0>
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 08:21:44 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 16:21:44  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 16:21:44  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 16:21:44  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 16:59:59  __main__  New H1 bar detected at 2026-06-19 12:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 16:59:59  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 16:59:59  data.feature_engineer  Feature matrix complete: 1,357 bars | 40 features | 4,668 warmup bars removed
+[INFO    ] 2026-06-19 16:59:59  __main__  Signal: HOLD | MTF: +0 | RSI: 47.9
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022CD14C5FD0>
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 12:17:02 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 20:17:02  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 20:17:02  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 20:17:02  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 20:17:02  __main__  Starting Quant Predator v2 — EURUSD H1
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001F992575FD0>
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 12:17:24 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 20:17:24  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 20:17:24  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 20:17:24  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 20:17:24  __main__  Starting Quant Predator v2 — EURUSD H1
+[INFO    ] 2026-06-19 20:17:24  broker.mt5_gateway  MT5 connected — XM Global Limited | Account: 1301627118 | Balance: $250.00
+[INFO    ] 2026-06-19 20:17:24  __main__  Session opening balance: $250.00
+[INFO    ] 2026-06-19 20:17:24  __main__  Loading PPO model and VecNormalize stats...
+[INFO    ] 2026-06-19 20:17:24  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 20:17:25  data.feature_engineer  Feature matrix complete: 1,360 bars | 40 features | 4,665 warmup bars removed
+[INFO    ] 2026-06-19 20:17:25  engine.rl_env  ForexTradingEnv v2.1 initialised: 1,360 bars | 40 features | obs_dim=962 | min_rr=2.0:1 | min_hold=3 bars
+[INFO    ] 2026-06-19 20:17:26  __main__  Model loaded successfully.
+[INFO    ] 2026-06-19 20:17:26  __main__  Startup: no open positions found. Starting flat.
+[INFO    ] 2026-06-19 20:17:26  __main__  Reconciling trade journal with broker history...
+[INFO    ] 2026-06-19 20:17:26  ledger.reconciler  Starting ledger reconciliation — EURUSD | last 90 days
+[WARNING ] 2026-06-19 20:17:26  ledger.reconciler  No deals found for magic 777777 / EURUSD in the last 90 days. Journal not modified.
+[INFO    ] 2026-06-19 20:17:26  __main__  V2 EXECUTION ENGINE ONLINE — entering main loop.
+[INFO    ] 2026-06-19 20:17:26  __main__  New H1 bar detected at 2026-06-19 15:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 20:17:26  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-19 20:17:26  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-19 20:17:27  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-19 20:17:27  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 20:17:27  data.feature_engineer  Feature matrix complete: 1,360 bars | 40 features | 4,665 warmup bars removed
+[INFO    ] 2026-06-19 20:17:27  __main__  Signal: HOLD | MTF: +0 | RSI: 46.6
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.connection  connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.connection  connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002576B8B6270>
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  send_request_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  send_request_headers.complete
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  send_request_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  send_request_body.complete
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  receive_response_headers.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 19 Jun 2026 12:17:41 GMT'), (b'Content-Length', b'848')])
+[INFO    ] 2026-06-19 20:17:41  httpx  HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  receive_response_body.started request=<Request [b'GET']>
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  receive_response_body.complete
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  response_closed.started
+[DEBUG   ] 2026-06-19 20:17:41  httpcore.http11  response_closed.complete
+[WARNING ] 2026-06-19 20:17:41  news.llm_analyst  Model 'llama3' not found in Ollama. Pull it with: ollama pull llama3
+[INFO    ] 2026-06-19 21:00:00  __main__  New H1 bar detected at 2026-06-19 16:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 21:00:00  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 21:00:00  data.feature_engineer  Feature matrix complete: 1,361 bars | 40 features | 4,664 warmup bars removed
+[INFO    ] 2026-06-19 21:00:00  __main__  Signal: HOLD | MTF: +0 | RSI: 52.1
+[INFO    ] 2026-06-19 22:00:00  __main__  New H1 bar detected at 2026-06-19 17:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 22:00:00  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-19 22:00:00  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-19 22:00:00  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-19 22:00:00  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 22:00:00  data.feature_engineer  Feature matrix complete: 1,362 bars | 40 features | 4,663 warmup bars removed
+[INFO    ] 2026-06-19 22:00:00  __main__  Signal: HOLD | MTF: +0 | RSI: 47.9
+[INFO    ] 2026-06-19 23:00:02  __main__  New H1 bar detected at 2026-06-19 18:00:00. Running MTF analysis...
+[INFO    ] 2026-06-19 23:00:02  news.forex_radar  Refreshing ForexFactory calendar cache...
+[DEBUG   ] 2026-06-19 23:00:02  urllib3.connectionpool  Starting new HTTPS connection (1): nfs.faireconomy.media:443
+[DEBUG   ] 2026-06-19 23:00:02  urllib3.connectionpool  https://nfs.faireconomy.media:443 "GET /ff_calendar_thisweek.xml HTTP/1.1" 200 None
+[INFO    ] 2026-06-19 23:00:02  data.feature_engineer  Building Multi-Timeframe Feature Matrix (H1 → H4/D1)...
+[INFO    ] 2026-06-19 23:00:02  data.feature_engineer  Feature matrix complete: 1,363 bars | 40 features | 4,662 warmup bars removed
+[INFO    ] 2026-06-19 23:00:02  __main__  Signal: HOLD | MTF: +0 | RSI: 50.8
