@@ -1,5 +1,7 @@
 # Runtime state (regenerated every H1 bar / every run — do not track)
-app/
+app/state/*.csv
+app/state/*.json
+
 
 # Trading/journal logs
 logs/
