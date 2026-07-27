@@ -1,0 +1,42 @@
+﻿{
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "core": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "core.logger"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "core.logger"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    }
+}

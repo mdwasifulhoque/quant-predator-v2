@@ -1,0 +1,2321 @@
+{
+    "MetaTrader5": {
+        "bacon": 1,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "data.fetcher",
+            "ledger.reconciler",
+            "live_trader.py"
+        ],
+        "imports": [
+            "MetaTrader5._core"
+        ],
+        "name": "MetaTrader5",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\__init__.py"
+    },
+    "MetaTrader5._core": {
+        "bacon": 2,
+        "imported_by": [
+            "MetaTrader5"
+        ],
+        "name": "MetaTrader5._core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\_core.cp313-win_amd64.pyd"
+    },
+    "broker": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "name": "broker",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\broker\\__init__.py"
+    },
+    "broker.mt5_gateway": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "dotenv"
+        ],
+        "name": "broker.mt5_gateway",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\broker\\mt5_gateway.py"
+    },
+    "core": {
+        "bacon": 1,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.policy",
+            "engine.rl_env",
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "live_trader.py",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 1,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.policy",
+            "engine.rl_env",
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "live_trader.py",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 1,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.rl_env",
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "live_trader.py",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "data": {
+        "bacon": 1,
+        "imported_by": [
+            "engine.rl_env",
+            "live_trader.py"
+        ],
+        "name": "data",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\__init__.py"
+    },
+    "data.feature_engineer": {
+        "bacon": 1,
+        "imported_by": [
+            "engine.rl_env",
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "numpy",
+            "pandas",
+            "pandas_ta"
+        ],
+        "name": "data.feature_engineer",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\feature_engineer.py"
+    },
+    "data.fetcher": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "pandas"
+        ],
+        "name": "data.fetcher",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\fetcher.py"
+    },
+    "dotenv": {
+        "bacon": 1,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "ledger.reconciler",
+            "live_trader.py"
+        ],
+        "imports": [
+            "dotenv.ipython",
+            "dotenv.main"
+        ],
+        "name": "dotenv",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\__init__.py"
+    },
+    "dotenv.ipython": {
+        "bacon": 2,
+        "imported_by": [
+            "dotenv"
+        ],
+        "imports": [
+            "dotenv.main"
+        ],
+        "name": "dotenv.ipython",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\ipython.py"
+    },
+    "dotenv.main": {
+        "bacon": 2,
+        "imported_by": [
+            "dotenv",
+            "dotenv.ipython"
+        ],
+        "name": "dotenv.main",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\main.py"
+    },
+    "engine": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "name": "engine",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\__init__.py"
+    },
+    "engine.policy": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.torch_layers",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "engine.policy",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\policy.py"
+    },
+    "engine.rl_env": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "pandas"
+        ],
+        "name": "engine.rl_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\rl_env.py"
+    },
+    "gymnasium": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "engine.rl_env",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces"
+        ],
+        "name": "gymnasium",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\gymnasium\\__init__.py"
+    },
+    "gymnasium.spaces": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "engine.rl_env",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces"
+        ],
+        "name": "gymnasium.spaces",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\gymnasium\\spaces\\__init__.py"
+    },
+    "ledger": {
+        "bacon": 1,
+        "imported_by": [
+            "ledger.reconciler",
+            "live_trader.py"
+        ],
+        "name": "ledger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\__init__.py"
+    },
+    "ledger.reconciler": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "dotenv",
+            "ledger",
+            "ledger.state_manager",
+            "pandas"
+        ],
+        "name": "ledger.reconciler",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\reconciler.py"
+    },
+    "ledger.state_manager": {
+        "bacon": 1,
+        "imported_by": [
+            "ledger.reconciler",
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "pandas"
+        ],
+        "name": "ledger.state_manager",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\state_manager.py"
+    },
+    "live_trader.py": {
+        "bacon": 0,
+        "imports": [
+            "MetaTrader5",
+            "broker",
+            "broker.mt5_gateway",
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "data.fetcher",
+            "dotenv",
+            "engine",
+            "engine.policy",
+            "engine.rl_env",
+            "ledger",
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "news",
+            "news.forex_radar",
+            "news.llm_analyst",
+            "numpy",
+            "pandas",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env"
+        ],
+        "name": "live_trader.py",
+        "path": "live_trader.py"
+    },
+    "news": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "name": "news",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\__init__.py"
+    },
+    "news.forex_radar": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "pytz",
+            "requests"
+        ],
+        "name": "news.forex_radar",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\forex_radar.py"
+    },
+    "news.llm_analyst": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "ollama"
+        ],
+        "name": "news.llm_analyst",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\llm_analyst.py"
+    },
+    "numpy": {
+        "bacon": 1,
+        "imported_by": [
+            "data.feature_engineer",
+            "engine.rl_env",
+            "live_trader.py",
+            "numpy",
+            "numpy.__config__",
+            "numpy._array_api_info",
+            "numpy._core",
+            "numpy._core.memmap",
+            "numpy._distributor_init",
+            "numpy._pytesttester",
+            "numpy.char",
+            "numpy.core",
+            "numpy.ctypeslib",
+            "numpy.dtypes",
+            "numpy.f2py",
+            "numpy.fft",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._arraysetops_impl",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._histograms_impl",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._npyio_impl",
+            "numpy.lib._polynomial_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.lib._stride_tricks_impl",
+            "numpy.lib._twodim_base_impl",
+            "numpy.lib._type_check_impl",
+            "numpy.lib._ufunclike_impl",
+            "numpy.lib._utils_impl",
+            "numpy.linalg",
+            "numpy.ma",
+            "numpy.matlib",
+            "numpy.matrixlib",
+            "numpy.polynomial",
+            "numpy.random",
+            "numpy.rec",
+            "numpy.strings",
+            "numpy.testing",
+            "numpy.typing",
+            "pandas.core.dtypes.dtypes",
+            "pandas.io.json._normalize",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3",
+            "torch"
+        ],
+        "imports": [
+            "numpy",
+            "numpy.__config__",
+            "numpy._array_api_info",
+            "numpy._core",
+            "numpy._core.memmap",
+            "numpy._core.printoptions",
+            "numpy._distributor_init",
+            "numpy._expired_attrs_2_0",
+            "numpy._globals",
+            "numpy._pytesttester",
+            "numpy.char",
+            "numpy.core",
+            "numpy.ctypeslib",
+            "numpy.dtypes",
+            "numpy.exceptions",
+            "numpy.f2py",
+            "numpy.fft",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._arraysetops_impl",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._histograms_impl",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._npyio_impl",
+            "numpy.lib._polynomial_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.lib._stride_tricks_impl",
+            "numpy.lib._twodim_base_impl",
+            "numpy.lib._type_check_impl",
+            "numpy.lib._ufunclike_impl",
+            "numpy.lib._utils_impl",
+            "numpy.lib.scimath",
+            "numpy.linalg",
+            "numpy.ma",
+            "numpy.matlib",
+            "numpy.matrixlib",
+            "numpy.polynomial",
+            "numpy.random",
+            "numpy.rec",
+            "numpy.strings",
+            "numpy.testing",
+            "numpy.typing",
+            "numpy.version"
+        ],
+        "name": "numpy",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\__init__.py"
+    },
+    "numpy.__config__": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.__config__",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\__config__.py"
+    },
+    "numpy._array_api_info": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy._array_api_info",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_array_api_info.py"
+    },
+    "numpy._core": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.__config__",
+            "numpy._array_api_info",
+            "numpy._core",
+            "numpy.char",
+            "numpy.core",
+            "numpy.ctypeslib",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._arraysetops_impl",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._histograms_impl",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._npyio_impl",
+            "numpy.lib._polynomial_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.lib._stride_tricks_impl",
+            "numpy.lib._twodim_base_impl",
+            "numpy.lib._type_check_impl",
+            "numpy.lib._ufunclike_impl",
+            "numpy.lib._utils_impl",
+            "numpy.rec",
+            "numpy.strings"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy._core.memmap",
+            "numpy._pytesttester",
+            "numpy.version"
+        ],
+        "name": "numpy._core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_core\\__init__.py"
+    },
+    "numpy._core.memmap": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy._core"
+        ],
+        "imports": [
+            "numpy"
+        ],
+        "name": "numpy._core.memmap",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_core\\memmap.py"
+    },
+    "numpy._core.printoptions": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "name": "numpy._core.printoptions",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_core\\printoptions.py"
+    },
+    "numpy._distributor_init": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy"
+        ],
+        "name": "numpy._distributor_init",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_distributor_init.py"
+    },
+    "numpy._expired_attrs_2_0": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "name": "numpy._expired_attrs_2_0",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_expired_attrs_2_0.py"
+    },
+    "numpy._globals": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "name": "numpy._globals",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_globals.py"
+    },
+    "numpy._pytesttester": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy._core",
+            "numpy.f2py",
+            "numpy.fft",
+            "numpy.lib",
+            "numpy.linalg",
+            "numpy.ma",
+            "numpy.matrixlib",
+            "numpy.polynomial",
+            "numpy.random",
+            "numpy.testing",
+            "numpy.typing"
+        ],
+        "imports": [
+            "numpy",
+            "numpy.testing"
+        ],
+        "name": "numpy._pytesttester",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\_pytesttester.py"
+    },
+    "numpy.char": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.char",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\char\\__init__.py"
+    },
+    "numpy.core": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\core\\__init__.py"
+    },
+    "numpy.ctypeslib": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.ctypeslib",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\ctypeslib.py"
+    },
+    "numpy.dtypes": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.dtypes"
+        ],
+        "imports": [
+            "numpy",
+            "numpy.dtypes"
+        ],
+        "name": "numpy.dtypes",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\dtypes.py"
+    },
+    "numpy.exceptions": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.f2py",
+            "numpy.lib._polynomial_impl"
+        ],
+        "name": "numpy.exceptions",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\exceptions.py"
+    },
+    "numpy.f2py": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.f2py"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.exceptions",
+            "numpy.f2py"
+        ],
+        "name": "numpy.f2py",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\f2py\\__init__.py"
+    },
+    "numpy.fft": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.fft"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.fft"
+        ],
+        "name": "numpy.fft",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\fft\\__init__.py"
+    },
+    "numpy.lib": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._npyio_impl",
+            "numpy.lib._polynomial_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.lib._twodim_base_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy._pytesttester",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._arraysetops_impl",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._histograms_impl",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._npyio_impl",
+            "numpy.lib._polynomial_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.lib._stride_tricks_impl",
+            "numpy.lib._twodim_base_impl",
+            "numpy.lib._type_check_impl",
+            "numpy.lib._ufunclike_impl",
+            "numpy.lib._utils_impl",
+            "numpy.lib.scimath"
+        ],
+        "name": "numpy.lib",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\__init__.py"
+    },
+    "numpy.lib._arraypad_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._index_tricks_impl"
+        ],
+        "name": "numpy.lib._arraypad_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_arraypad_impl.py"
+    },
+    "numpy.lib._arraysetops_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.lib._arraysetops_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_arraysetops_impl.py"
+    },
+    "numpy.lib._function_base_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._nanfunctions_impl",
+            "numpy.lib._polynomial_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._histograms_impl",
+            "numpy.lib._twodim_base_impl"
+        ],
+        "name": "numpy.lib._function_base_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_function_base_impl.py"
+    },
+    "numpy.lib._histograms_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._function_base_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.lib._histograms_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_histograms_impl.py"
+    },
+    "numpy.lib._index_tricks_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._arraypad_impl",
+            "numpy.lib._shape_base_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._function_base_impl",
+            "numpy.matrixlib"
+        ],
+        "name": "numpy.lib._index_tricks_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_index_tricks_impl.py"
+    },
+    "numpy.lib._nanfunctions_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._function_base_impl"
+        ],
+        "name": "numpy.lib._nanfunctions_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_nanfunctions_impl.py"
+    },
+    "numpy.lib._npyio_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.ma"
+        ],
+        "name": "numpy.lib._npyio_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_npyio_impl.py"
+    },
+    "numpy.lib._polynomial_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.exceptions",
+            "numpy.lib",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._twodim_base_impl",
+            "numpy.lib._type_check_impl",
+            "numpy.linalg"
+        ],
+        "name": "numpy.lib._polynomial_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_polynomial_impl.py"
+    },
+    "numpy.lib._shape_base_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._index_tricks_impl",
+            "numpy.matrixlib"
+        ],
+        "name": "numpy.lib._shape_base_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_shape_base_impl.py"
+    },
+    "numpy.lib._stride_tricks_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._twodim_base_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.lib._stride_tricks_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_stride_tricks_impl.py"
+    },
+    "numpy.lib._twodim_base_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._function_base_impl",
+            "numpy.lib._polynomial_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib",
+            "numpy.lib._stride_tricks_impl"
+        ],
+        "name": "numpy.lib._twodim_base_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_twodim_base_impl.py"
+    },
+    "numpy.lib._type_check_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._polynomial_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core",
+            "numpy.lib._ufunclike_impl"
+        ],
+        "name": "numpy.lib._type_check_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_type_check_impl.py"
+    },
+    "numpy.lib._ufunclike_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib",
+            "numpy.lib._type_check_impl"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.lib._ufunclike_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_ufunclike_impl.py"
+    },
+    "numpy.lib._utils_impl": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.lib._utils_impl",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\_utils_impl.py"
+    },
+    "numpy.lib.scimath": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib"
+        ],
+        "name": "numpy.lib.scimath",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\lib\\scimath.py"
+    },
+    "numpy.linalg": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib._polynomial_impl",
+            "numpy.linalg"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.linalg"
+        ],
+        "name": "numpy.linalg",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\linalg\\__init__.py"
+    },
+    "numpy.ma": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib._npyio_impl",
+            "numpy.ma"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.ma"
+        ],
+        "name": "numpy.ma",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\ma\\__init__.py"
+    },
+    "numpy.matlib": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy.matrixlib"
+        ],
+        "name": "numpy.matlib",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\matlib.py"
+    },
+    "numpy.matrixlib": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.lib._index_tricks_impl",
+            "numpy.lib._shape_base_impl",
+            "numpy.matlib",
+            "numpy.matrixlib"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.matrixlib"
+        ],
+        "name": "numpy.matrixlib",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\matrixlib\\__init__.py"
+    },
+    "numpy.polynomial": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester"
+        ],
+        "name": "numpy.polynomial",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\polynomial\\__init__.py"
+    },
+    "numpy.random": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy.random"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.random"
+        ],
+        "name": "numpy.random",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\random\\__init__.py"
+    },
+    "numpy.rec": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.rec",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\rec\\__init__.py"
+    },
+    "numpy.strings": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.strings",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\strings\\__init__.py"
+    },
+    "numpy.testing": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.testing"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester",
+            "numpy.testing"
+        ],
+        "name": "numpy.testing",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\testing\\__init__.py"
+    },
+    "numpy.typing": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy"
+        ],
+        "imports": [
+            "numpy",
+            "numpy._pytesttester"
+        ],
+        "name": "numpy.typing",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\typing\\__init__.py"
+    },
+    "numpy.version": {
+        "bacon": 2,
+        "imported_by": [
+            "numpy",
+            "numpy._core"
+        ],
+        "name": "numpy.version",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\version.py"
+    },
+    "ollama": {
+        "bacon": 2,
+        "imported_by": [
+            "news.llm_analyst",
+            "ollama"
+        ],
+        "imports": [
+            "ollama"
+        ],
+        "name": "ollama",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\ollama\\__init__.py"
+    },
+    "pandas": {
+        "bacon": 1,
+        "imported_by": [
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.rl_env",
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "live_trader.py",
+            "pandas",
+            "pandas._config",
+            "pandas.api",
+            "pandas.arrays",
+            "pandas.compat",
+            "pandas.core.api",
+            "pandas.core.computation.api",
+            "pandas.core.config_init",
+            "pandas.core.dtypes.dtypes",
+            "pandas.core.reshape.api",
+            "pandas.errors",
+            "pandas.io",
+            "pandas.io.api",
+            "pandas.io.json",
+            "pandas.io.json._normalize",
+            "pandas.plotting",
+            "pandas.testing",
+            "pandas.tseries",
+            "pandas.tseries.api",
+            "pandas.tseries.offsets",
+            "pandas.util",
+            "pandas.util._print_versions",
+            "pandas.util._tester"
+        ],
+        "imports": [
+            "pandas",
+            "pandas._config",
+            "pandas._version",
+            "pandas._version_meson",
+            "pandas.api",
+            "pandas.arrays",
+            "pandas.compat",
+            "pandas.core",
+            "pandas.core.api",
+            "pandas.core.computation",
+            "pandas.core.computation.api",
+            "pandas.core.config_init",
+            "pandas.core.dtypes",
+            "pandas.core.dtypes.dtypes",
+            "pandas.core.reshape",
+            "pandas.core.reshape.api",
+            "pandas.errors",
+            "pandas.io",
+            "pandas.io.api",
+            "pandas.io.json",
+            "pandas.io.json._normalize",
+            "pandas.plotting",
+            "pandas.testing",
+            "pandas.tseries",
+            "pandas.tseries.api",
+            "pandas.tseries.offsets",
+            "pandas.util",
+            "pandas.util._print_versions",
+            "pandas.util._tester"
+        ],
+        "name": "pandas",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\__init__.py"
+    },
+    "pandas._config": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas._config",
+            "pandas.core.config_init",
+            "pandas.errors"
+        ],
+        "imports": [
+            "pandas",
+            "pandas._config"
+        ],
+        "name": "pandas._config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\_config\\__init__.py"
+    },
+    "pandas._version": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.util._print_versions"
+        ],
+        "name": "pandas._version",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\_version.py"
+    },
+    "pandas._version_meson": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.util._print_versions"
+        ],
+        "name": "pandas._version_meson",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\_version_meson.py"
+    },
+    "pandas.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.api"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.api"
+        ],
+        "name": "pandas.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\api\\__init__.py"
+    },
+    "pandas.arrays": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.core",
+            "pandas.util"
+        ],
+        "name": "pandas.arrays",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\arrays\\__init__.py"
+    },
+    "pandas.compat": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.compat",
+            "pandas.core.dtypes.dtypes",
+            "pandas.util._print_versions",
+            "pandas.util._tester"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.compat"
+        ],
+        "name": "pandas.compat",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\compat\\__init__.py"
+    },
+    "pandas.core": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.arrays",
+            "pandas.core.api",
+            "pandas.core.computation.api",
+            "pandas.core.config_init",
+            "pandas.core.dtypes.dtypes",
+            "pandas.core.reshape.api",
+            "pandas.util"
+        ],
+        "name": "pandas.core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\__init__.py"
+    },
+    "pandas.core.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.core",
+            "pandas.core.dtypes",
+            "pandas.core.dtypes.dtypes",
+            "pandas.io",
+            "pandas.tseries",
+            "pandas.tseries.offsets"
+        ],
+        "name": "pandas.core.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\api.py"
+    },
+    "pandas.core.computation": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.computation.api",
+            "pandas.core.config_init"
+        ],
+        "name": "pandas.core.computation",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\computation\\__init__.py"
+    },
+    "pandas.core.computation.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.core",
+            "pandas.core.computation"
+        ],
+        "name": "pandas.core.computation.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\computation\\api.py"
+    },
+    "pandas.core.config_init": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas._config",
+            "pandas.core",
+            "pandas.core.computation",
+            "pandas.core.dtypes",
+            "pandas.io",
+            "pandas.plotting"
+        ],
+        "name": "pandas.core.config_init",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\config_init.py"
+    },
+    "pandas.core.dtypes": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.api",
+            "pandas.core.config_init",
+            "pandas.core.dtypes.dtypes"
+        ],
+        "name": "pandas.core.dtypes",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\dtypes\\__init__.py"
+    },
+    "pandas.core.dtypes.dtypes": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.api"
+        ],
+        "imports": [
+            "numpy",
+            "pandas",
+            "pandas.compat",
+            "pandas.core",
+            "pandas.core.dtypes",
+            "pandas.errors",
+            "pandas.util",
+            "pytz"
+        ],
+        "name": "pandas.core.dtypes.dtypes",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\dtypes\\dtypes.py"
+    },
+    "pandas.core.reshape": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.reshape.api"
+        ],
+        "name": "pandas.core.reshape",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\reshape\\__init__.py"
+    },
+    "pandas.core.reshape.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.core",
+            "pandas.core.reshape"
+        ],
+        "name": "pandas.core.reshape.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\core\\reshape\\api.py"
+    },
+    "pandas.errors": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.dtypes.dtypes"
+        ],
+        "imports": [
+            "pandas",
+            "pandas._config",
+            "pandas.util"
+        ],
+        "name": "pandas.errors",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\errors\\__init__.py"
+    },
+    "pandas.io": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.api",
+            "pandas.core.config_init",
+            "pandas.io",
+            "pandas.io.api",
+            "pandas.io.json"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.io",
+            "pandas.io.json"
+        ],
+        "name": "pandas.io",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\io\\__init__.py"
+    },
+    "pandas.io.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.io",
+            "pandas.io.json"
+        ],
+        "name": "pandas.io.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\io\\api.py"
+    },
+    "pandas.io.json": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.io",
+            "pandas.io.api",
+            "pandas.io.json"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.io",
+            "pandas.io.json"
+        ],
+        "name": "pandas.io.json",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\io\\json\\__init__.py"
+    },
+    "pandas.io.json._normalize": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "numpy",
+            "pandas"
+        ],
+        "name": "pandas.io.json._normalize",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\io\\json\\_normalize.py"
+    },
+    "pandas.plotting": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.config_init",
+            "pandas.plotting"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.plotting"
+        ],
+        "name": "pandas.plotting",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\plotting\\__init__.py"
+    },
+    "pandas.testing": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas"
+        ],
+        "name": "pandas.testing",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\testing.py"
+    },
+    "pandas.tseries": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.api",
+            "pandas.tseries",
+            "pandas.tseries.api"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.tseries",
+            "pandas.tseries.offsets"
+        ],
+        "name": "pandas.tseries",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\tseries\\__init__.py"
+    },
+    "pandas.tseries.api": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.tseries",
+            "pandas.tseries.offsets"
+        ],
+        "name": "pandas.tseries.api",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\tseries\\api.py"
+    },
+    "pandas.tseries.offsets": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.core.api",
+            "pandas.tseries",
+            "pandas.tseries.api"
+        ],
+        "imports": [
+            "pandas"
+        ],
+        "name": "pandas.tseries.offsets",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\tseries\\offsets.py"
+    },
+    "pandas.util": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas",
+            "pandas.arrays",
+            "pandas.core.dtypes.dtypes",
+            "pandas.errors",
+            "pandas.util"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.core",
+            "pandas.util"
+        ],
+        "name": "pandas.util",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\util\\__init__.py"
+    },
+    "pandas.util._print_versions": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas._version",
+            "pandas._version_meson",
+            "pandas.compat"
+        ],
+        "name": "pandas.util._print_versions",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\util\\_print_versions.py"
+    },
+    "pandas.util._tester": {
+        "bacon": 2,
+        "imported_by": [
+            "pandas"
+        ],
+        "imports": [
+            "pandas",
+            "pandas.compat"
+        ],
+        "name": "pandas.util._tester",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\util\\_tester.py"
+    },
+    "pandas_ta": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "pandas_ta"
+        ],
+        "imports": [
+            "pandas_ta"
+        ],
+        "name": "pandas_ta",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas_ta\\__init__.py"
+    },
+    "pytz": {
+        "bacon": 2,
+        "imported_by": [
+            "news.forex_radar",
+            "pandas.core.dtypes.dtypes",
+            "pytz"
+        ],
+        "imports": [
+            "pytz"
+        ],
+        "name": "pytz",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pytz\\__init__.py"
+    },
+    "requests": {
+        "bacon": 2,
+        "imported_by": [
+            "news.forex_radar",
+            "requests"
+        ],
+        "imports": [
+            "requests"
+        ],
+        "name": "requests",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\requests\\__init__.py"
+    },
+    "stable_baselines3": {
+        "bacon": 1,
+        "imported_by": [
+            "engine.policy",
+            "live_trader.py",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.a2c",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder",
+            "stable_baselines3.ddpg",
+            "stable_baselines3.ddpg.DDPG",
+            "stable_baselines3.dqn",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.policies",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3",
+            "stable_baselines3.td3.TD3"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.a2c",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.ddpg",
+            "stable_baselines3.ddpg.DDPG",
+            "stable_baselines3.dqn",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.sac",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3",
+            "stable_baselines3.td3.TD3"
+        ],
+        "name": "stable_baselines3",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\__init__.py"
+    },
+    "stable_baselines3.PPO": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.ppo",
+            "stable_baselines3.ppo.policies",
+            "stable_baselines3.ppo.ppo"
+        ],
+        "name": "stable_baselines3.PPO",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\PPO\\__init__.py"
+    },
+    "stable_baselines3.a2c": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.a2c"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.a2c"
+        ],
+        "name": "stable_baselines3.a2c",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\a2c\\__init__.py"
+    },
+    "stable_baselines3.a2c.A2C": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.a2c.A2C",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\a2c\\A2C.py"
+    },
+    "stable_baselines3.common": {
+        "bacon": 1,
+        "imported_by": [
+            "engine.policy",
+            "live_trader.py",
+            "stable_baselines3",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder",
+            "stable_baselines3.ddpg.DDPG",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.policies",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3"
+        ],
+        "name": "stable_baselines3.common",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\__init__.py"
+    },
+    "stable_baselines3.common.torch_layers": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.common.torch_layers",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\torch_layers.py"
+    },
+    "stable_baselines3.common.utils": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "torch"
+        ],
+        "name": "stable_baselines3.common.utils",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\utils.py"
+    },
+    "stable_baselines3.common.vec_env": {
+        "bacon": 1,
+        "imported_by": [
+            "live_trader.py",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder",
+            "stable_baselines3.her.her_replay_buffer"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder"
+        ],
+        "name": "stable_baselines3.common.vec_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\__init__.py"
+    },
+    "stable_baselines3.common.vec_env.base_vec_env": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.subproc_vec_env",
+            "stable_baselines3.common.vec_env.vec_check_nan",
+            "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+            "stable_baselines3.common.vec_env.vec_frame_stack",
+            "stable_baselines3.common.vec_env.vec_monitor",
+            "stable_baselines3.common.vec_env.vec_normalize",
+            "stable_baselines3.common.vec_env.vec_transpose",
+            "stable_baselines3.common.vec_env.vec_video_recorder"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy"
+        ],
+        "name": "stable_baselines3.common.vec_env.base_vec_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\base_vec_env.py"
+    },
+    "stable_baselines3.common.vec_env.dummy_vec_env": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.vec_video_recorder"
+        ],
+        "imports": [
+            "gymnasium",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.dummy_vec_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\dummy_vec_env.py"
+    },
+    "stable_baselines3.common.vec_env.stacked_observations": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.vec_frame_stack"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common"
+        ],
+        "name": "stable_baselines3.common.vec_env.stacked_observations",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\stacked_observations.py"
+    },
+    "stable_baselines3.common.vec_env.subproc_vec_env": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.vec_video_recorder"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.subproc_vec_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\subproc_vec_env.py"
+    },
+    "stable_baselines3.common.vec_env.vec_check_nan": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_check_nan",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_check_nan.py"
+    },
+    "stable_baselines3.common.vec_env.vec_extract_dict_obs": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_extract_dict_obs",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_extract_dict_obs.py"
+    },
+    "stable_baselines3.common.vec_env.vec_frame_stack": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.stacked_observations"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_frame_stack",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_frame_stack.py"
+    },
+    "stable_baselines3.common.vec_env.vec_monitor": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_monitor",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_monitor.py"
+    },
+    "stable_baselines3.common.vec_env.vec_normalize": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_normalize",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_normalize.py"
+    },
+    "stable_baselines3.common.vec_env.vec_transpose": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_transpose",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_transpose.py"
+    },
+    "stable_baselines3.common.vec_env.vec_video_recorder": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "gymnasium",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.common.vec_env.base_vec_env",
+            "stable_baselines3.common.vec_env.dummy_vec_env",
+            "stable_baselines3.common.vec_env.subproc_vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env.vec_video_recorder",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\vec_video_recorder.py"
+    },
+    "stable_baselines3.ddpg": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.ddpg"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.ddpg"
+        ],
+        "name": "stable_baselines3.ddpg",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ddpg\\__init__.py"
+    },
+    "stable_baselines3.ddpg.DDPG": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.td3",
+            "torch"
+        ],
+        "name": "stable_baselines3.ddpg.DDPG",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ddpg\\DDPG.py"
+    },
+    "stable_baselines3.dqn": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.dqn",
+            "stable_baselines3.dqn.DQN"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.dqn"
+        ],
+        "name": "stable_baselines3.dqn",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\dqn\\__init__.py"
+    },
+    "stable_baselines3.dqn.DQN": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.dqn",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.dqn.DQN",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\dqn\\DQN.py"
+    },
+    "stable_baselines3.her": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.her",
+            "stable_baselines3.her.her_replay_buffer"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.her",
+            "stable_baselines3.her.her_replay_buffer"
+        ],
+        "name": "stable_baselines3.her",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\her\\__init__.py"
+    },
+    "stable_baselines3.her.her_replay_buffer": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.her"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "stable_baselines3.her",
+            "torch"
+        ],
+        "name": "stable_baselines3.her.her_replay_buffer",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\her\\her_replay_buffer.py"
+    },
+    "stable_baselines3.ppo": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.ppo"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.ppo",
+            "stable_baselines3.ppo.policies",
+            "stable_baselines3.ppo.ppo"
+        ],
+        "name": "stable_baselines3.ppo",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ppo\\__init__.py"
+    },
+    "stable_baselines3.ppo.PPO": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.ppo.PPO",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ppo\\PPO.py"
+    },
+    "stable_baselines3.ppo.policies": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.PPO",
+            "stable_baselines3.ppo"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.common"
+        ],
+        "name": "stable_baselines3.ppo.policies",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ppo\\policies.py"
+    },
+    "stable_baselines3.ppo.ppo": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3.PPO",
+            "stable_baselines3.ppo"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.ppo.ppo",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\ppo\\ppo.py"
+    },
+    "stable_baselines3.sac": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.sac",
+            "stable_baselines3.sac.SAC"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.sac"
+        ],
+        "name": "stable_baselines3.sac",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\sac\\__init__.py"
+    },
+    "stable_baselines3.sac.SAC": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.sac",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.sac.SAC",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\sac\\SAC.py"
+    },
+    "stable_baselines3.td3": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3",
+            "stable_baselines3.ddpg.DDPG",
+            "stable_baselines3.td3",
+            "stable_baselines3.td3.TD3"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.td3"
+        ],
+        "name": "stable_baselines3.td3",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\td3\\__init__.py"
+    },
+    "stable_baselines3.td3.TD3": {
+        "bacon": 2,
+        "imported_by": [
+            "stable_baselines3"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.td3",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.td3.TD3",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\td3\\TD3.py"
+    },
+    "torch": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.utils",
+            "stable_baselines3.ddpg.DDPG",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.her.her_replay_buffer",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3",
+            "torch",
+            "torch.nn"
+        ],
+        "imports": [
+            "numpy",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "torch",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\torch\\__init__.py"
+    },
+    "torch.nn": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "stable_baselines3.a2c.A2C",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.dqn.DQN",
+            "stable_baselines3.ppo.PPO",
+            "stable_baselines3.ppo.ppo",
+            "stable_baselines3.sac.SAC",
+            "stable_baselines3.td3.TD3",
+            "torch",
+            "torch.nn"
+        ],
+        "imports": [
+            "torch",
+            "torch.nn"
+        ],
+        "name": "torch.nn",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\torch\\nn\\__init__.py"
+    }
+}

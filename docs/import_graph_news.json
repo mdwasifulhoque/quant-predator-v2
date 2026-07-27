@@ -1,0 +1,118 @@
+{
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "news",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "core": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 2,
+        "imported_by": [
+            "news.forex_radar",
+            "news.llm_analyst"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "news": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "name": "news",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\__init__.py"
+    },
+    "news.forex_radar": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "pytz",
+            "requests"
+        ],
+        "name": "news.forex_radar",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\forex_radar.py"
+    },
+    "news.llm_analyst": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "ollama"
+        ],
+        "name": "news.llm_analyst",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\news\\llm_analyst.py"
+    },
+    "ollama": {
+        "bacon": 2,
+        "imported_by": [
+            "news.llm_analyst",
+            "ollama"
+        ],
+        "imports": [
+            "ollama"
+        ],
+        "name": "ollama",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\ollama\\__init__.py"
+    },
+    "pytz": {
+        "bacon": 2,
+        "imported_by": [
+            "news.forex_radar",
+            "pytz"
+        ],
+        "imports": [
+            "pytz"
+        ],
+        "name": "pytz",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pytz\\__init__.py"
+    },
+    "requests": {
+        "bacon": 2,
+        "imported_by": [
+            "news.forex_radar",
+            "requests"
+        ],
+        "imports": [
+            "requests"
+        ],
+        "name": "requests",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\requests\\__init__.py"
+    }
+}

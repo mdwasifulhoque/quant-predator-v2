@@ -29,7 +29,7 @@ from __future__ import annotations
 import os
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Optional, Tuple
 
 import MetaTrader5 as mt5
@@ -231,6 +231,8 @@ class LiveTrader:
                 open_position   = self.current_position,
                 ai_signal       = self.ai_signal,
                 news_status     = self.news_status,
+                mt5_ok          = (acc is not None),
+                ollama_ok       = self.llm.is_available(),
             )
 
     # ==========================================================================
@@ -274,8 +276,6 @@ class LiveTrader:
         current_ema_dist  = float(closed_bar.get("ema_200_dist",   0.0))
         current_mtf       = float(closed_bar.get("MTF_Alignment",  0.0)) if "MTF_Alignment" in df.columns else 0.0
         current_bb_width  = float(closed_bar.get("BB_Width",       0.0))
-        current_bull_fvg  = int(closed_bar.get("bull_fvg_active",  0))
-        current_bear_fvg  = int(closed_bar.get("bear_fvg_active",  0))
         current_price     = float(closed_bar.get("close",          0.0))
 
         # Swing levels for SL/TP placement (from last confirmed swing points)
@@ -330,12 +330,21 @@ class LiveTrader:
         self.ai_signal = signal_map.get(action, "HOLD")
         logger.info(f"Signal: {self.ai_signal} | MTF: {current_mtf:+.0f} | RSI: {current_rsi:.1f}")
 
+        # ── Write hourly eval log entry for dashboard feed ─────────────────────
+        fvg_bull_dist = float(closed_bar.get("bull_fvg_dist_atr", 0.0))
+        fvg_bear_dist = float(closed_bar.get("bear_fvg_dist_atr", 0.0))
+        self.state.log_eval(
+            mtf=int(current_mtf), rsi=current_rsi,
+            fvg_bull=fvg_bull_dist, fvg_bear=fvg_bear_dist,
+            signal=self.ai_signal,
+        )
+
         # Cache indicator snapshot for attaching to the close journal record
         self._entry_indicators = {
             "rsi": current_rsi, "ema_dist": current_ema_dist,
             "atr": current_atr, "mtf_align": int(current_mtf),
             "bb_width": current_bb_width,
-            "bull_fvg": current_bull_fvg, "bear_fvg": current_bear_fvg,
+            "bull_fvg_dist_atr": fvg_bull_dist, "bear_fvg_dist_atr": fvg_bear_dist,
         }
 
         # ── Execute ────────────────────────────────────────────────────────────
@@ -450,8 +459,8 @@ class LiveTrader:
                 atr       = ind.get("atr", 0.0),
                 mtf_align = ind.get("mtf_align", 0),
                 bb_width  = ind.get("bb_width", 0.0),
-                bull_fvg  = ind.get("bull_fvg", 0),
-                bear_fvg  = ind.get("bear_fvg", 0),
+                bull_fvg_dist_atr=ind.get("bull_fvg_dist_atr", 0.0),
+                bear_fvg_dist_atr=ind.get("bear_fvg_dist_atr", 0.0),
             )
             logger.trade(
                 "BUY" if target == 1 else "SELL",

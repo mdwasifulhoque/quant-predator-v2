@@ -1,0 +1,12 @@
+site_name: Quant Predator v2
+theme:
+  name: material
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+nav:
+  - Home: index.md

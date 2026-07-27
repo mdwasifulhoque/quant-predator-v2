@@ -1,0 +1,80 @@
+{
+    "MetaTrader5": {
+        "bacon": 2,
+        "imported_by": [
+            "broker.mt5_gateway"
+        ],
+        "name": "MetaTrader5",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\__init__.py"
+    },
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "broker",
+            "broker.mt5_gateway"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "broker": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "name": "broker",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\broker\\__init__.py"
+    },
+    "broker.mt5_gateway": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "dotenv"
+        ],
+        "name": "broker.mt5_gateway",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\broker\\mt5_gateway.py"
+    },
+    "core": {
+        "bacon": 2,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "core.logger"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 2,
+        "imported_by": [
+            "broker.mt5_gateway",
+            "core.logger"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 2,
+        "imported_by": [
+            "broker.mt5_gateway"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "dotenv": {
+        "bacon": 2,
+        "imported_by": [
+            "broker.mt5_gateway"
+        ],
+        "name": "dotenv",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\__init__.py"
+    }
+}

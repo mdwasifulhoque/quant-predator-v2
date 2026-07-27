@@ -1,0 +1,116 @@
+{
+    "MetaTrader5": {
+        "bacon": 2,
+        "imported_by": [
+            "ledger.reconciler"
+        ],
+        "name": "MetaTrader5",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\__init__.py"
+    },
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "ledger",
+            "ledger.reconciler",
+            "ledger.state_manager"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "core": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "ledger.reconciler",
+            "ledger.state_manager"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "ledger.reconciler",
+            "ledger.state_manager"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 2,
+        "imported_by": [
+            "ledger.reconciler",
+            "ledger.state_manager"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "dotenv": {
+        "bacon": 2,
+        "imported_by": [
+            "ledger.reconciler"
+        ],
+        "name": "dotenv",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\__init__.py"
+    },
+    "ledger": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "ledger.reconciler"
+        ],
+        "name": "ledger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\__init__.py"
+    },
+    "ledger.reconciler": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "dotenv",
+            "ledger",
+            "ledger.state_manager",
+            "pandas"
+        ],
+        "name": "ledger.reconciler",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\reconciler.py"
+    },
+    "ledger.state_manager": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "ledger.reconciler"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "pandas"
+        ],
+        "name": "ledger.state_manager",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\ledger\\state_manager.py"
+    },
+    "pandas": {
+        "bacon": 2,
+        "imported_by": [
+            "ledger.reconciler",
+            "ledger.state_manager",
+            "pandas"
+        ],
+        "imports": [
+            "pandas"
+        ],
+        "name": "pandas",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\__init__.py"
+    }
+}

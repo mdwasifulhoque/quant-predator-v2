@@ -3,6 +3,22 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260616_180032-icdkr54o/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260616_180032-icdkr54o/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030515-dsaty0ih/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030515-dsaty0ih/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030804-tfvkm5m2/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030804-tfvkm5m2/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030924-qfw0qlr2/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/wandb/run-20260617_030924-qfw0qlr2/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260616_180549-7glnbu9a/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260616_180549-7glnbu9a/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203413-344oolhw/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203413-344oolhw/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203605-ovqgigkx/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203605-ovqgigkx/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203739-a0jm4da9/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/wandb/run-20260618_203739-a0jm4da9/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (quant-predator-v2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

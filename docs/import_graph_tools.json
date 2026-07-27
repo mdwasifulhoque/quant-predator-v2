@@ -1,0 +1,195 @@
+{
+    "MetaTrader5": {
+        "bacon": 2,
+        "imported_by": [
+            "data.fetcher",
+            "tools.strategy_validator"
+        ],
+        "name": "MetaTrader5",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\__init__.py"
+    },
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "tools",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "core": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "data.fetcher",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "data": {
+        "bacon": 2,
+        "imported_by": [
+            "tools.strategy_validator"
+        ],
+        "name": "data",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\__init__.py"
+    },
+    "data.feature_engineer": {
+        "bacon": 2,
+        "imported_by": [
+            "tools.strategy_validator"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "numpy",
+            "pandas"
+        ],
+        "name": "data.feature_engineer",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\feature_engineer.py"
+    },
+    "data.fetcher": {
+        "bacon": 2,
+        "imported_by": [
+            "tools.strategy_validator"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "pandas"
+        ],
+        "name": "data.fetcher",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\fetcher.py"
+    },
+    "dotenv": {
+        "bacon": 2,
+        "imported_by": [
+            "tools.strategy_validator"
+        ],
+        "name": "dotenv",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\__init__.py"
+    },
+    "numpy": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "numpy",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "imports": [
+            "numpy"
+        ],
+        "name": "numpy",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\__init__.py"
+    },
+    "pandas": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "data.fetcher",
+            "pandas",
+            "tools.strategy_validator",
+            "tools.tear_sheet"
+        ],
+        "imports": [
+            "pandas"
+        ],
+        "name": "pandas",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\__init__.py"
+    },
+    "tools": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "tools.strategy_validator"
+        ],
+        "name": "tools",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\tools\\__init__.py"
+    },
+    "tools.strategy_validator": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "data.fetcher",
+            "dotenv",
+            "numpy",
+            "pandas",
+            "tools",
+            "tools.tear_sheet",
+            "vectorbt"
+        ],
+        "name": "tools.strategy_validator",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\tools\\strategy_validator.py"
+    },
+    "tools.tear_sheet": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "tools.strategy_validator"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "numpy",
+            "pandas"
+        ],
+        "name": "tools.tear_sheet",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\tools\\tear_sheet.py"
+    },
+    "vectorbt": {
+        "bacon": 2,
+        "imported_by": [
+            "tools.strategy_validator",
+            "vectorbt"
+        ],
+        "imports": [
+            "vectorbt"
+        ],
+        "name": "vectorbt",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\vectorbt\\__init__.py"
+    }
+}

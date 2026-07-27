@@ -20,27 +20,40 @@ DESIGN PRINCIPLES:
        schema and dtypes regardless of whether the input is 50,000 training
        bars or a 6,025-bar live inference window.
 
-OUTPUT FEATURE SET (35 stationary features):
-    ┌─────────────────┬──────────────────────────────────────────────────────┐
-    │ Category        │ Features                                             │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ H1 Base         │ ATRr_14, RSI_14, macd_norm, macd_signal_norm,        │
-    │                 │ macd_hist_norm, bb_pct, BB_Width,                    │
-    │                 │ H1_Trend, ema_50_dist, ema_200_dist                  │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ Lagged Memory   │ RSI_14_lag{1,2,3}, ATRr_14_lag{1,2,3},              │
-    │                 │ macd_norm_lag{1,2,3}                                 │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ Market Structure│ is_swing_high, is_swing_low,                         │
-    │                 │ bull_fvg_active, bear_fvg_active                     │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ Session Context │ session_asian, session_london, session_ny,           │
-    │                 │ session_overlap, day_of_week                         │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ Volume/Momentum │ rel_volume, close_roc_3, close_roc_12               │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ HTF Projections │ H4_Trend, H4_ema_dist, D1_Trend, D1_ema_dist        │
-    └─────────────────┴──────────────────────────────────────────────────────┘
+OUTPUT FEATURE SET (40 stationary features):
+    ┌──────────────────┬───────────────────────────────────────────────────────┐
+    │ Category         │ Features                                              │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ H1 Base (10)     │ ATRr_14, RSI_14, macd_norm, macd_signal_norm,        │
+    │                  │ macd_hist_norm, bb_pct, BB_Width,                    │
+    │                  │ H1_Trend, ema_50_dist, ema_200_dist                  │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ Lagged Memory (9)│ RSI_14_lag{1,2,3}, ATRr_14_lag{1,2,3},               │
+    │                  │ macd_norm_lag{1,2,3}                                 │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ Market           │ is_swing_high, is_swing_low,                         │
+    │ Structure (4)    │ bull_fvg_dist_atr, bear_fvg_dist_atr                 │
+    │                  │ (continuous ATR-normalised zone distance —           │
+    │                  │  replaces the earlier binary active-flag features)   │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ Session          │ session_asian, session_london, session_ny,           │
+    │ Context (5)      │ session_overlap, day_of_week                         │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ Volume/          │ rel_volume, close_roc_3, close_roc_12                │
+    │ Momentum (3)     │                                                       │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ HTF              │ H4_Trend, H4_ema_dist, D1_Trend, D1_ema_dist        │
+    │ Projections (4)  │                                                       │
+    ├──────────────────┼───────────────────────────────────────────────────────┤
+    │ Option A: Price  │ candle_body_ratio, lower_wick_ratio,                 │
+    │ Action           │ upper_wick_ratio, session_range_pct, vol_spike       │
+    │ Conviction (5)   │                                                       │
+    └──────────────────┴───────────────────────────────────────────────────────┘
+
+    NOTE: bull_fvg_active / bear_fvg_active (binary flags) are retained in the
+    output DataFrame for debugging/dashboard visibility, but are NOT part of
+    FEATURE_COLUMNS — they are superseded by the continuous *_dist_atr features
+    above. See _compute_unmitigated_fvg() for both computations.
 
 UTILITY COLUMN (present in DataFrame, excluded from model features):
     BB_Width_rolling_mean — 100-bar rolling mean used for dynamic position
@@ -220,7 +233,7 @@ FEATURE_COLUMNS: list[str] = [
 ]
 
 assert len(FEATURE_COLUMNS) == 40, (
-    f"FEATURE_COLUMNS length mismatch: expected 35, got {len(FEATURE_COLUMNS)}. "
+    f"FEATURE_COLUMNS length mismatch: expected 40, got {len(FEATURE_COLUMNS)}. "
     "Update ModelConfig.N_FEATURES in core/config.py if you change this list."
 )
 

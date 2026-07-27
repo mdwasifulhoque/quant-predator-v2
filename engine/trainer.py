@@ -11,11 +11,6 @@ Changes from v2.0:
   - Full Weights & Biases integration (graceful no-op if not installed).
   - Convergence targets printed at startup — watch these in the W&B dashboard.
 
-ESTIMATED RUNTIME (RTX 3050, i5-12450HX, 2.5 M steps):
-  Data + indicators   ~5 min
-  Training            ~75-90 min
-  OOS evaluation      ~5 min
-  Total               ~85-100 min
 
 RUN:
   python engine/trainer.py

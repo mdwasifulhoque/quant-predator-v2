@@ -45,6 +45,7 @@ class Paths:
     CONFIG_FILE  = os.path.join(APP_STATE, "config.json")
     JOURNAL_FILE = os.path.join(APP_STATE, "trade_journal.csv")
     CHART_FILE   = os.path.join(APP_STATE, "chart_data.csv")
+    EVAL_LOG_FILE = os.path.join(APP_STATE, "eval_log.json")
 
     @staticmethod
     def model_zip(symbol: str) -> str:
@@ -150,13 +151,14 @@ class ModelConfig:
     PPO + LSTM hyperparameters.
 
     OBSERVATION SPACE:
-      Market window : 35 features × 24 bars = 840 dimensions
+      Market window : 40 features × 24 bars = 960 dimensions
       State scalars : 2 (current_position, floating_profit_normalized)
-      Total OBS_DIM : 842
+      Total OBS_DIM : 962
 
     ARCHITECTURE:
-      OBS (842) → LSTM(24×35 → hidden 128) → concat state (2) → (130)
+      OBS (962) → LSTM(24×40 → hidden 128) → concat state (2) → (130)
                 → MLP [256, 128] → action (3) / value (1)
+    ...
 
     v2.1 CHANGES vs v2.0:
       LEARNING_RATE  3e-4 → 1e-4   (clip_fraction=0.374 in run 1 — thrashing)
@@ -254,7 +256,7 @@ class SessionConfig:
 
     XM broker offset: typically UTC+2 (winter) / UTC+3 (summer EET).
     If timestamps are in broker time, subtract the offset from all values.
-    Verify: compare mt5.symbol_info_tick().time vs datetime.utcnow().
+    Verify: compare mt5.symbol_info_tick().time vs datetime.now(timezone.utc).
     """
     ASIAN_START   = 0
     ASIAN_END     = 8
@@ -350,7 +352,7 @@ class NewsConfig:
 
 class LLMConfig:
     BASE_URL    = "http://localhost:11434"
-    MODEL_NAME  = "llama3"
+    MODEL_NAME  = "llama3:latest"
     TIMEOUT_SEC = 30
     MAX_TOKENS  = 600
 

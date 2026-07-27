@@ -1,180 +1,295 @@
 """
 ledger/state_manager.py
 =======================
-Atomic, race-condition-proof state persistence for Quant Predator v2.
+Postgres-backed state persistence for Quant Predator v2 (Supabase-hosted).
 
-DESIGN:
-    All file writes use the atomic rename pattern:
-        1. Write to a .tmp file in the same directory.
-        2. Call os.replace(tmp, target) — atomic on NTFS (Windows).
-    This prevents the Streamlit dashboard from ever reading a
-    partially-written file and raising JSONDecodeError.
+Replaces the earlier JSON/CSV file-based approach. Concurrency and
+atomicity (previously hand-rolled via os.replace + retry-with-backoff for
+Windows WinError 5) are now handled natively by Postgres transactions —
+the dashboard and live_trader.py can read/write concurrently without
+either process risking a torn read.
 
-    A threading.Lock guards the trade journal CSV to prevent row
-    corruption if future async components share the same process.
+chart_data.csv is intentionally NOT migrated — it's a rolling OHLCV cache
+for the candlestick chart, not transactional state, and stays as a flat
+file for simplicity.
 """
 
 from __future__ import annotations
 
-import time
-import csv
-import json
-import os
-import tempfile
-import threading
-from datetime import datetime
-from typing import Any, Dict, List, Optional
+from datetime import datetime, timezone
+from typing import Any, Dict, Optional
 
 import pandas as pd
+from sqlalchemy import select
 
-from core.config import JournalConfig, Paths
+from core.db import get_session, init_db
+from core.db_models import AppConfig, EvalLogEntry, LiveState, TradeJournalEntry
 from core.logger import get_logger
 
 logger = get_logger(__name__)
 
-_journal_lock = threading.Lock()
-
 
 class StateManager:
     """
-    Manages all shared state files accessed by both live_trader.py
-    and the Streamlit dashboard (app/dashboard.py).
-
-    Files managed:
-        state.json        — Live account metrics (balance, equity, signal, heartbeat)
-        config.json       — User preferences (auto_trade, symbol, manual_command)
-        trade_journal.csv — Immutable trade ledger (append-only)
-        chart_data.csv    — Last N bars for the candlestick chart
+    Manages all shared state accessed by both live_trader.py and the
+    Streamlit dashboard (app/dashboard.py), now backed by Postgres.
     """
 
     def __init__(self) -> None:
-        Paths.ensure_dirs()
-        self._ensure_journal()
-        self._ensure_config()
+        init_db()
+        self._ensure_singletons()
 
     # ==========================================================================
-    # STATE.JSON
+    # LIVE STATE
     # ==========================================================================
 
     def update_live_state(
         self,
-        balance:        float,
+        balance: float,
         floating_profit: float,
-        open_position:  int,
-        ai_signal:      str,
-        news_status:    str,
+        open_position: int,
+        ai_signal: str,
+        news_status: str,
+        mt5_ok: bool = True,
+        ollama_ok: bool = False,
     ) -> None:
-        """
-        Writes the current live metrics to state.json atomically.
-        Called by live_trader.py on every main loop iteration.
-        """
+        """Upserts the singleton live_state row. Called every main loop iteration."""
         pos_str = {1: "LONG", -1: "SHORT", 0: "FLAT"}.get(open_position, "FLAT")
-        data = {
-            "balance":        round(balance, 2),
-            "equity":         round(balance + floating_profit, 2),
-            "floating_profit":round(floating_profit, 2),
-            "open_position":  pos_str,
-            "ai_signal":      ai_signal,
-            "news_status":    news_status,
-            "last_update":    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        }
-        self._atomic_write_json(Paths.STATE_FILE, data)
+        try:
+            with get_session() as session:
+                row = session.get(LiveState, 1)
+                if row is None:
+                    row = LiveState(id=1)
+                    session.add(row)
+                row.balance = round(balance, 2)
+                row.equity = round(balance + floating_profit, 2)
+                row.floating_profit = round(floating_profit, 2)
+                row.open_position = pos_str
+                row.ai_signal = ai_signal
+                row.news_status = news_status
+                row.mt5_ok = mt5_ok
+                row.ollama_ok = ollama_ok
+                row.last_update = datetime.now(timezone.utc)
+        except Exception as exc:
+            logger.error(f"Failed to update live state: {exc}")
 
     def read_live_state(self) -> Dict[str, Any]:
-        """Reads and returns state.json. Returns empty dict on read failure."""
-        return self._safe_read_json(Paths.STATE_FILE, default={})
+        """Reads the current live_state row. Returns empty dict on failure.
+        Numeric/string fields are coalesced from None to sensible defaults —
+        Postgres NULL (unset column) needs explicit handling here, unlike
+        the old JSON file where an absent key naturally fell through to
+        dict.get()'s default in dashboard.py."""
+        try:
+            with get_session() as session:
+                row = session.get(LiveState, 1)
+                if row is None:
+                    return {}
+                return {
+                    "balance": row.balance if row.balance is not None else 0.0,
+                    "equity": row.equity if row.equity is not None else 0.0,
+                    "floating_profit": row.floating_profit if row.floating_profit is not None else 0.0,
+                    "open_position": row.open_position or "FLAT",
+                    "ai_signal": row.ai_signal or "HOLD",
+                    "news_status": row.news_status or "",
+                    "mt5_ok": row.mt5_ok if row.mt5_ok is not None else False,
+                    "ollama_ok": row.ollama_ok if row.ollama_ok is not None else False,
+                    "last_update": row.last_update.strftime("%Y-%m-%d %H:%M:%S") if row.last_update else "",
+                }
+        except Exception as exc:
+            logger.error(f"Failed to read live state: {exc}")
+            return {}
 
     # ==========================================================================
-    # CONFIG.JSON
+    # APP CONFIG
     # ==========================================================================
 
     def read_config(self) -> Dict[str, Any]:
-        """Returns the current trading configuration."""
-        return self._safe_read_json(Paths.CONFIG_FILE, default={
-            "auto_trade":      True,
-            "symbol":          "EURUSD",
-            "timeframe":       "H1",
-            "manual_command":  "NONE",
-        })
+        try:
+            with get_session() as session:
+                row = session.get(AppConfig, 1)
+                if row is None:
+                    return {
+                        "auto_trade": True, "symbol": "EURUSD",
+                        "timeframe": "H1", "manual_command": "NONE",
+                    }
+                return {
+                    "auto_trade": row.auto_trade, "symbol": row.symbol,
+                    "timeframe": row.timeframe, "manual_command": row.manual_command,
+                }
+        except Exception as exc:
+            logger.error(f"Failed to read config: {exc}")
+            return {"auto_trade": True, "symbol": "EURUSD", "timeframe": "H1", "manual_command": "NONE"}
 
     def write_config(self, config: Dict[str, Any]) -> None:
-        """Persists updated configuration atomically."""
-        self._atomic_write_json(Paths.CONFIG_FILE, config)
+        try:
+            with get_session() as session:
+                row = session.get(AppConfig, 1)
+                if row is None:
+                    row = AppConfig(id=1)
+                    session.add(row)
+                row.auto_trade = config.get("auto_trade", True)
+                row.symbol = config.get("symbol", "EURUSD")
+                row.timeframe = config.get("timeframe", "H1")
+                row.manual_command = config.get("manual_command", "NONE")
+        except Exception as exc:
+            logger.error(f"Failed to write config: {exc}")
 
     def clear_manual_command(self) -> None:
-        """Resets the manual_command field to NONE after it has been consumed."""
         config = self.read_config()
         config["manual_command"] = "NONE"
         self.write_config(config)
 
     # ==========================================================================
-    # TRADE JOURNAL (append-only CSV)
+    # TRADE JOURNAL (append-only)
     # ==========================================================================
 
     def log_entry(
         self,
-        action:     str,
-        price:      float,
-        lot_size:   float,
-        sl:         float,
-        tp:         float,
-        rsi:        float = 0.0,
-        ema_dist:   float = 0.0,
-        atr:        float = 0.0,
-        mtf_align:  int   = 0,
-        bb_width:   float = 0.0,
-        bull_fvg:   int   = 0,
-        bear_fvg:   int   = 0,
+        action: str, price: float, lot_size: float, sl: float, tp: float,
+        rsi: float = 0.0, ema_dist: float = 0.0, atr: float = 0.0,
+        mtf_align: int = 0, bb_width: float = 0.0,
+        bull_fvg_dist_atr: float = 0.0, bear_fvg_dist_atr: float = 0.0,
+        run_id: Optional[int] = None,
     ) -> None:
-        """Appends an entry event row to the trade journal."""
+        """Appends an entry event row. NOTE: now logs the continuous FVG
+        distance features actually fed to the model, not the old binary
+        flags — fixes the journal/model-input mismatch found during the
+        portfolio audit."""
         self._append_journal_row(
             action, price, lot_size, sl, tp, pnl=0.0,
-            rsi=rsi, ema_dist=ema_dist, atr=atr,
-            mtf_align=mtf_align, bb_width=bb_width,
-            bull_fvg=bull_fvg, bear_fvg=bear_fvg,
+            rsi=rsi, ema_dist=ema_dist, atr=atr, mtf_align=mtf_align, bb_width=bb_width,
+            bull_fvg_dist_atr=bull_fvg_dist_atr, bear_fvg_dist_atr=bear_fvg_dist_atr,
+            run_id=run_id,
         )
 
     def log_close(
         self,
-        action:     str,
-        price:      float,
-        lot_size:   float,
-        pnl:        float,
-        rsi:        float = 0.0,
-        ema_dist:   float = 0.0,
-        atr:        float = 0.0,
-        mtf_align:  int   = 0,
-        bb_width:   float = 0.0,
-        bull_fvg:   int   = 0,
-        bear_fvg:   int   = 0,
+        action: str, price: float, lot_size: float, pnl: float,
+        rsi: float = 0.0, ema_dist: float = 0.0, atr: float = 0.0,
+        mtf_align: int = 0, bb_width: float = 0.0,
+        bull_fvg_dist_atr: float = 0.0, bear_fvg_dist_atr: float = 0.0,
+        run_id: Optional[int] = None,
     ) -> None:
-        """Appends a close event row to the trade journal with true broker P&L."""
+        """Appends a close event row with true broker P&L."""
         self._append_journal_row(
             action, price, lot_size, sl=0.0, tp=0.0, pnl=pnl,
-            rsi=rsi, ema_dist=ema_dist, atr=atr,
-            mtf_align=mtf_align, bb_width=bb_width,
-            bull_fvg=bull_fvg, bear_fvg=bear_fvg,
+            rsi=rsi, ema_dist=ema_dist, atr=atr, mtf_align=mtf_align, bb_width=bb_width,
+            bull_fvg_dist_atr=bull_fvg_dist_atr, bear_fvg_dist_atr=bear_fvg_dist_atr,
+            run_id=run_id,
         )
+
+    def _append_journal_row(
+        self, action, price, lot_size, sl, tp, pnl,
+        rsi, ema_dist, atr, mtf_align, bb_width,
+        bull_fvg_dist_atr, bear_fvg_dist_atr, run_id,
+    ) -> None:
+        try:
+            with get_session() as session:
+                session.add(TradeJournalEntry(
+                    timestamp=datetime.now(timezone.utc),
+                    run_id=run_id,
+                    action=action, price=round(price, 5), lot_size=round(lot_size, 2),
+                    sl=round(sl, 5) if sl else 0, tp=round(tp, 5) if tp else 0,
+                    pnl=round(pnl, 2),
+                    rsi=round(rsi, 2), ema_dist=round(ema_dist, 4), atr=round(atr, 6),
+                    mtf_align=int(mtf_align), bb_width=round(bb_width, 4),
+                    bull_fvg_dist_atr=round(bull_fvg_dist_atr, 4),
+                    bear_fvg_dist_atr=round(bear_fvg_dist_atr, 4),
+                ))
+        except Exception as exc:
+            logger.error(f"Journal append failed: {exc}")
 
     def read_journal(self) -> pd.DataFrame:
         """Returns the full trade journal as a DataFrame. Empty DF on error."""
         try:
-            if not os.path.exists(Paths.JOURNAL_FILE):
-                return pd.DataFrame(columns=JournalConfig.COLUMNS)
-            return pd.read_csv(Paths.JOURNAL_FILE)
+            with get_session() as session:
+                rows = session.execute(select(TradeJournalEntry)).scalars().all()
+                if not rows:
+                    return pd.DataFrame()
+                return pd.DataFrame([{
+                    "Timestamp": r.timestamp, "Action": r.action, "Price": r.price,
+                    "Lot_Size": r.lot_size, "SL": r.sl, "TP": r.tp, "PnL": r.pnl,
+                    "RSI": r.rsi, "EMA_Dist": r.ema_dist, "ATR": r.atr,
+                    "MTF_Align": r.mtf_align, "BB_Width": r.bb_width,
+                    "Bull_FVG_Dist_ATR": r.bull_fvg_dist_atr,
+                    "Bear_FVG_Dist_ATR": r.bear_fvg_dist_atr,
+                    "run_id": r.run_id,
+                } for r in rows])
         except Exception as exc:
             logger.error(f"Failed to read trade journal: {exc}")
-            return pd.DataFrame(columns=JournalConfig.COLUMNS)
+            return pd.DataFrame()
 
     # ==========================================================================
-    # CHART DATA
+    # EVAL LOG (rolling live feed)
+    # ==========================================================================
+
+    def log_eval(self, mtf: int, rsi: float, fvg_bull: float, fvg_bear: float,
+                 signal: str, reason: str = "", max_rows: int = 50) -> None:
+        """Appends one eval-feed row and prunes to the last `max_rows`.
+        Session is derived from the current UTC hour, matching the
+        classification live_trader.py previously computed inline."""
+        now = datetime.now(timezone.utc)
+        hour = now.hour
+        if 12 <= hour < 16:
+            session = "OVERLAP"
+        elif 7 <= hour < 16:
+            session = "LDN"
+        elif 12 <= hour < 21:
+            session = "NY"
+        elif 0 <= hour < 8:
+            session = "ASIAN"
+        else:
+            session = "OFF"
+
+        try:
+            with get_session() as session_db:
+                session_db.add(EvalLogEntry(
+                    timestamp=now, session=session, mtf=mtf, rsi=round(rsi, 1),
+                    fvg_bull=round(fvg_bull, 2), fvg_bear=round(fvg_bear, 2),
+                    signal=signal, reason=reason,
+                ))
+                session_db.flush()
+                all_ids = session_db.execute(
+                    select(EvalLogEntry.id).order_by(EvalLogEntry.timestamp.desc())
+                ).scalars().all()
+                if len(all_ids) > max_rows:
+                    excess_ids = all_ids[max_rows:]
+                    session_db.query(EvalLogEntry).filter(EvalLogEntry.id.in_(excess_ids)).delete(
+                        synchronize_session=False
+                    )
+        except Exception as exc:
+            logger.error(f"Eval log append failed: {exc}")
+
+    def read_eval_log(self) -> list:
+        """Returns eval log entries newest-first as a list of dicts, in the
+        same shape dashboard.py's _load_eval_log() previously read from
+        eval_log.json — so dashboard code needs no field-name changes."""
+        try:
+            with get_session() as session:
+                rows = session.execute(
+                    select(EvalLogEntry).order_by(EvalLogEntry.timestamp.desc())
+                ).scalars().all()
+                return [{
+                    "t": r.timestamp.strftime("%H:%M"),
+                    "date": r.timestamp.strftime("%d %b"),
+                    "session": r.session,
+                    "mtf": r.mtf,
+                    "rsi": r.rsi,
+                    "fvg_bull": r.fvg_bull,
+                    "fvg_bear": r.fvg_bear,
+                    "signal": r.signal,
+                    "reason": r.reason,
+                } for r in rows]
+        except Exception as exc:
+            logger.error(f"Failed to read eval log: {exc}")
+            return []
+
+    # ==========================================================================
+    # CHART DATA — unchanged, stays as flat file (not transactional state)
     # ==========================================================================
 
     def update_chart_data(self, df: pd.DataFrame, n_bars: int = 500) -> None:
-        """
-        Writes the last n_bars of OHLCV data for the Streamlit candlestick chart.
-        Uses a direct (non-atomic) write since stale chart data is acceptable.
-        """
+        from core.config import Paths
         try:
             df.tail(n_bars).to_csv(Paths.CHART_FILE)
         except Exception as exc:
@@ -184,83 +299,16 @@ class StateManager:
     # PRIVATE
     # ==========================================================================
 
-    def _atomic_write_json(self, filepath: str, data: Dict, max_retries: int = 5) -> None:
-        """
-        Writes data to filepath atomically via tmp file + os.replace.
-
-        Windows-specific: os.replace() can intermittently raise
-        PermissionError (WinError 5 — Access is denied) when antivirus
-        real-time scanning, the search indexer, or another process (e.g.
-        the dashboard reading this same file) briefly holds a lock on the
-        tmp file or the destination. This is almost always transient and
-        clears within milliseconds, so we retry with a short backoff
-        before giving up and logging an error.
-        """
-        dir_ = os.path.dirname(filepath)
-        tmp = None
+    def _ensure_singletons(self) -> None:
+        """Creates the id=1 rows for live_state/app_config if they don't exist."""
         try:
-            fd, tmp = tempfile.mkstemp(dir=dir_, suffix=".tmp")
-            with os.fdopen(fd, "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=2)
-
-            for attempt in range(max_retries):
-                try:
-                    os.replace(tmp, filepath)
-                    return
-                except PermissionError:
-                    if attempt == max_retries - 1:
-                        raise
-                    time.sleep(0.05 * (attempt + 1))  # 50ms, 100ms, 150ms...
-
+            with get_session() as session:
+                if session.get(LiveState, 1) is None:
+                    session.add(LiveState(id=1))
+                if session.get(AppConfig, 1) is None:
+                    session.add(AppConfig(
+                        id=1, auto_trade=True, symbol="EURUSD",
+                        timeframe="H1", manual_command="NONE",
+                    ))
         except Exception as exc:
-            logger.error(f"Atomic JSON write failed for {filepath}: {exc}")
-            if tmp and os.path.exists(tmp):
-                try:
-                    os.unlink(tmp)
-                except OSError:
-                    pass
-
-    def _safe_read_json(self, filepath: str, default: Any) -> Any:
-        """Reads a JSON file, returning `default` on any error."""
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return default
-
-    def _ensure_journal(self) -> None:
-        """Creates trade_journal.csv with headers if it doesn't exist."""
-        if not os.path.exists(Paths.JOURNAL_FILE):
-            with open(Paths.JOURNAL_FILE, "w", newline="") as f:
-                csv.writer(f).writerow(JournalConfig.COLUMNS)
-
-    def _ensure_config(self) -> None:
-        """Creates config.json with defaults if it doesn't exist."""
-        if not os.path.exists(Paths.CONFIG_FILE):
-            self.write_config({
-                "auto_trade":     True,
-                "symbol":         "EURUSD",
-                "timeframe":      "H1",
-                "manual_command": "NONE",
-            })
-
-    def _append_journal_row(
-        self, action, price, lot_size, sl, tp, pnl,
-        rsi, ema_dist, atr, mtf_align, bb_width, bull_fvg, bear_fvg,
-    ) -> None:
-        """Thread-safe append of one row to trade_journal.csv."""
-        with _journal_lock:
-            try:
-                with open(Paths.JOURNAL_FILE, "a", newline="") as f:
-                    csv.writer(f).writerow([
-                        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        action, round(price, 5), round(lot_size, 2),
-                        round(sl, 5) if sl else 0,
-                        round(tp, 5) if tp else 0,
-                        round(pnl, 2),
-                        round(rsi, 2), round(ema_dist, 4), round(atr, 6),
-                        int(mtf_align), round(bb_width, 4),
-                        int(bull_fvg), int(bear_fvg),
-                    ])
-            except Exception as exc:
-                logger.error(f"Journal append failed: {exc}")
+            logger.error(f"Failed to ensure singleton rows: {exc}")

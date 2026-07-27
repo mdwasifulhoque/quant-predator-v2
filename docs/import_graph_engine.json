@@ -1,0 +1,610 @@
+{
+    "MetaTrader5": {
+        "bacon": 2,
+        "imported_by": [
+            "data.fetcher",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "name": "MetaTrader5",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\MetaTrader5\\__init__.py"
+    },
+    "__main__": {
+        "bacon": 0,
+        "imports": [
+            "engine",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.rl_env",
+            "engine.trainer"
+        ],
+        "name": "__main__",
+        "path": null
+    },
+    "core": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.rl_env",
+            "engine.trainer",
+            "tools.tear_sheet"
+        ],
+        "name": "core",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\__init__.py"
+    },
+    "core.config": {
+        "bacon": 2,
+        "imported_by": [
+            "core.logger",
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.rl_env",
+            "engine.trainer",
+            "tools.tear_sheet"
+        ],
+        "name": "core.config",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\config.py"
+    },
+    "core.logger": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.rl_env",
+            "engine.trainer",
+            "tools.tear_sheet"
+        ],
+        "imports": [
+            "core",
+            "core.config"
+        ],
+        "name": "core.logger",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\core\\logger.py"
+    },
+    "data": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.rl_env",
+            "engine.trainer"
+        ],
+        "name": "data",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\__init__.py"
+    },
+    "data.feature_engineer": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.rl_env",
+            "engine.trainer"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "numpy",
+            "pandas"
+        ],
+        "name": "data.feature_engineer",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\feature_engineer.py"
+    },
+    "data.fetcher": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "pandas"
+        ],
+        "name": "data.fetcher",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\data\\fetcher.py"
+    },
+    "dotenv": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "name": "dotenv",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\dotenv\\__init__.py"
+    },
+    "engine": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "name": "engine",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\__init__.py"
+    },
+    "engine.backtester": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "data.fetcher",
+            "dotenv",
+            "engine",
+            "engine.policy",
+            "engine.rl_env",
+            "numpy",
+            "pandas",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env",
+            "tools",
+            "tools.tear_sheet"
+        ],
+        "name": "engine.backtester",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\backtester.py"
+    },
+    "engine.optuna_search": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "data.fetcher",
+            "dotenv",
+            "engine",
+            "engine.backtester",
+            "engine.policy",
+            "engine.rl_env",
+            "numpy",
+            "optuna",
+            "optuna.pruners",
+            "optuna.samplers",
+            "pandas",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.common",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.vec_env",
+            "tools",
+            "tools.tear_sheet",
+            "torch",
+            "wandb"
+        ],
+        "name": "engine.optuna_search",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\optuna_search.py"
+    },
+    "engine.policy": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.torch_layers",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "engine.policy",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\policy.py"
+    },
+    "engine.rl_env": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "gymnasium",
+            "gymnasium.spaces",
+            "numpy",
+            "pandas"
+        ],
+        "name": "engine.rl_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\rl_env.py"
+    },
+    "engine.trainer": {
+        "bacon": 1,
+        "imported_by": [
+            "__main__"
+        ],
+        "imports": [
+            "MetaTrader5",
+            "core",
+            "core.config",
+            "core.logger",
+            "data",
+            "data.feature_engineer",
+            "data.fetcher",
+            "dotenv",
+            "engine",
+            "engine.backtester",
+            "engine.policy",
+            "engine.rl_env",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.common",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.vec_env",
+            "tools",
+            "tools.tear_sheet",
+            "torch",
+            "wandb",
+            "wandb.integration",
+            "wandb.integration.sb3"
+        ],
+        "name": "engine.trainer",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\engine\\trainer.py"
+    },
+    "gymnasium": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "engine.rl_env",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.torch_layers"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces"
+        ],
+        "name": "gymnasium",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\gymnasium\\__init__.py"
+    },
+    "gymnasium.spaces": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "engine.rl_env",
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3.common.torch_layers"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces"
+        ],
+        "name": "gymnasium.spaces",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\gymnasium\\spaces\\__init__.py"
+    },
+    "numpy": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.rl_env",
+            "numpy",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "tools.tear_sheet",
+            "torch"
+        ],
+        "imports": [
+            "numpy"
+        ],
+        "name": "numpy",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\numpy\\__init__.py"
+    },
+    "optuna": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "optuna",
+            "optuna.pruners",
+            "optuna.samplers"
+        ],
+        "imports": [
+            "optuna",
+            "optuna.pruners",
+            "optuna.samplers"
+        ],
+        "name": "optuna",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\optuna\\__init__.py"
+    },
+    "optuna.pruners": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "optuna",
+            "optuna.pruners"
+        ],
+        "imports": [
+            "optuna",
+            "optuna.pruners"
+        ],
+        "name": "optuna.pruners",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\optuna\\pruners\\__init__.py"
+    },
+    "optuna.samplers": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "optuna",
+            "optuna.samplers"
+        ],
+        "imports": [
+            "optuna",
+            "optuna.samplers"
+        ],
+        "name": "optuna.samplers",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\optuna\\samplers\\__init__.py"
+    },
+    "pandas": {
+        "bacon": 2,
+        "imported_by": [
+            "data.feature_engineer",
+            "data.fetcher",
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.rl_env",
+            "pandas",
+            "tools.tear_sheet"
+        ],
+        "imports": [
+            "pandas"
+        ],
+        "name": "pandas",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\pandas\\__init__.py"
+    },
+    "stable_baselines3": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.trainer",
+            "stable_baselines3",
+            "stable_baselines3.PPO",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.common"
+        ],
+        "name": "stable_baselines3",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\__init__.py"
+    },
+    "stable_baselines3.PPO": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "stable_baselines3"
+        ],
+        "name": "stable_baselines3.PPO",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\PPO\\__init__.py"
+    },
+    "stable_baselines3.common": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.trainer",
+            "stable_baselines3",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.torch_layers",
+            "stable_baselines3.common.vec_env"
+        ],
+        "name": "stable_baselines3.common",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\__init__.py"
+    },
+    "stable_baselines3.common.callbacks": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "gymnasium",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.vec_env"
+        ],
+        "name": "stable_baselines3.common.callbacks",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\callbacks.py"
+    },
+    "stable_baselines3.common.evaluation": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "stable_baselines3.common.callbacks"
+        ],
+        "imports": [
+            "gymnasium",
+            "numpy",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env"
+        ],
+        "name": "stable_baselines3.common.evaluation",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\evaluation.py"
+    },
+    "stable_baselines3.common.torch_layers": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy"
+        ],
+        "imports": [
+            "gymnasium",
+            "gymnasium.spaces",
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "stable_baselines3.common.torch_layers",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\torch_layers.py"
+    },
+    "stable_baselines3.common.vec_env": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer",
+            "stable_baselines3.common.callbacks",
+            "stable_baselines3.common.evaluation",
+            "stable_baselines3.common.vec_env"
+        ],
+        "imports": [
+            "stable_baselines3",
+            "stable_baselines3.common",
+            "stable_baselines3.common.vec_env"
+        ],
+        "name": "stable_baselines3.common.vec_env",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\stable_baselines3\\common\\vec_env\\__init__.py"
+    },
+    "tools": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "name": "tools",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\tools\\__init__.py"
+    },
+    "tools.tear_sheet": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.backtester",
+            "engine.optuna_search",
+            "engine.trainer"
+        ],
+        "imports": [
+            "core",
+            "core.config",
+            "core.logger",
+            "numpy",
+            "pandas"
+        ],
+        "name": "tools.tear_sheet",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\tools\\tear_sheet.py"
+    },
+    "torch": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "engine.policy",
+            "engine.trainer",
+            "stable_baselines3.common.torch_layers",
+            "torch",
+            "torch.nn"
+        ],
+        "imports": [
+            "numpy",
+            "torch",
+            "torch.nn"
+        ],
+        "name": "torch",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\torch\\__init__.py"
+    },
+    "torch.nn": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.policy",
+            "stable_baselines3.common.torch_layers",
+            "torch",
+            "torch.nn"
+        ],
+        "imports": [
+            "torch",
+            "torch.nn"
+        ],
+        "name": "torch.nn",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\torch\\nn\\__init__.py"
+    },
+    "wandb": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.optuna_search",
+            "engine.trainer",
+            "wandb"
+        ],
+        "imports": [
+            "wandb",
+            "wandb.integration"
+        ],
+        "name": "wandb",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\wandb\\__init__.py"
+    },
+    "wandb.integration": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.trainer",
+            "wandb"
+        ],
+        "name": "wandb.integration",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\wandb\\integration\\__init__.py"
+    },
+    "wandb.integration.sb3": {
+        "bacon": 2,
+        "imported_by": [
+            "engine.trainer"
+        ],
+        "name": "wandb.integration.sb3",
+        "path": "D:\\Softwares\\GitHub\\quant-predator-v2\\.venv\\Lib\\site-packages\\wandb\\integration\\sb3\\__init__.py"
+    }
+}

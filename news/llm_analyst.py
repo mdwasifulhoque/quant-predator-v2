@@ -220,9 +220,9 @@ class LLMAnalyst:
     def _verify_connection(self) -> None:
         """Tests the Ollama connection at initialization time."""
         try:
-            models = _ollama_lib.list()
-            model_names = [m.get("name", "") for m in models.get("models", [])]
-            if LLMConfig.MODEL_NAME not in " ".join(model_names):
+            response = _ollama_lib.list()
+            model_names = [m.model for m in response.models]
+            if not any(LLMConfig.MODEL_NAME in name for name in model_names):
                 logger.warning(
                     f"Model '{LLMConfig.MODEL_NAME}' not found in Ollama. "
                     f"Pull it with: ollama pull {LLMConfig.MODEL_NAME}"
