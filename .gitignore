@@ -3,9 +3,7 @@
 # ============================================
 
 # Runtime state (regenerated every H1 bar / every run — do not track)
-app/state/*.json
-app/state/*.csv
-app/state/*.log
+app/
 
 # Trading/journal logs
 logs/
@@ -93,6 +91,7 @@ cython_debug/
 .env
 .venv
 env/
+.venv/
 venv/
 ENV/
 env.bak/
