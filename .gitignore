@@ -1,7 +1,3 @@
-# ============================================
-# Quant Predator v2 — project-specific ignores
-# ============================================
-
 # Runtime state (regenerated every H1 bar / every run — do not track)
 app/
 
@@ -14,17 +10,13 @@ wandb/
 
 # Model checkpoints (large binaries — track intentionally via Git LFS if needed,
 # not by default; uncomment the next line once you've decided on a policy)
-# models/**/*.zip
+models/**/*.zip
 
 # Environment / secrets
 .env
 
 # JetBrains IDE
 .idea/
-
-# ============================================
-# Standard Python (GitHub template, trimmed to what's relevant)
-# ============================================
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
