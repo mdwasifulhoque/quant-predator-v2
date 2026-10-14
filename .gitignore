@@ -100,3 +100,5 @@ site/
 
 # Import graph SVG renders (regenerable via setup_codebase_kb.sh; keep only the JSON)
 docs/*.svg
+
+system_tests/

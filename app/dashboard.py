@@ -31,7 +31,7 @@ from __future__ import annotations
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict
 
 import pandas as pd
@@ -222,10 +222,10 @@ def _load_eval_log() -> List[Dict]:
     return _STATE.read_eval_log()
 
 def _seconds_since(ts_str: str) -> float:
-    """Returns seconds elapsed since a '%Y-%m-%d %H:%M:%S' timestamp string."""
+    """Returns seconds elapsed since a '%Y-%m-%d %H:%M:%S' UTC timestamp string."""
     try:
-        then = datetime.strptime(ts_str, "%Y-%m-%d %H:%M:%S")
-        return (datetime.now() - then).total_seconds()
+        then = datetime.strptime(ts_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        return (datetime.now(timezone.utc) - then).total_seconds()
     except Exception:
         return 9999.0
 
@@ -235,6 +235,33 @@ def _hex_to_rgba(hex_color: str, alpha: float) -> str:
     hex_color = hex_color.lstrip("#")
     r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
     return f"rgba({r},{g},{b},{alpha})"
+
+def _render_heartbeat_dot(stale: bool) -> None:
+    """Renders the pulsing LIVE/STALE dot in an isolated iframe so its CSS
+    animation isn't restarted every time render_hud()'s @st.fragment reruns
+    (raw st.markdown HTML gets torn down and rebuilt every tick, which
+    resets any CSS animation to frame zero — this sidesteps that)."""
+    dot_col = "#ff4c4c" if stale else "#00c48c"
+    dot_lbl = "STALE" if stale else "LIVE"
+    components.html(
+        f"""
+        <style>
+          @keyframes dotPulse {{ 0%,100% {{ opacity: 1.0; }} 50% {{ opacity: 0.25; }} }}
+          .hb-dot {{
+              display: inline-block; width: 8px; height: 8px;
+              border-radius: 50%; margin-right: 5px;
+              background: {dot_col};
+              animation: dotPulse 2s ease-in-out infinite;
+          }}
+          body {{ margin: 0; font-family: 'JetBrains Mono', monospace; }}
+        </style>
+        <div style="padding-top:22px;">
+          <span class="hb-dot"></span>
+          <span style="font-size:0.68rem;color:{dot_col};">{dot_lbl}</span>
+        </div>
+        """,
+        height=40,
+    )
 
 # ==============================================================================
 # CLIENT-SIDE COUNTDOWN COMPONENT
@@ -359,13 +386,7 @@ def render_hud() -> None:
     col_dot, col_b, col_e, col_p, col_td, col_h = st.columns([1.4,2,2,1.8,2,1.8])
 
     with col_dot:
-        st.markdown(
-            f"<div style='padding-top:22px;'>"
-            f"<span class='hb-dot' style='background:{dot_col};'></span>"
-            f"<span style='font-size:0.68rem;color:{dot_col};'>{dot_lbl}</span>"
-            f"</div>",
-            unsafe_allow_html=True,
-        )
+        _render_heartbeat_dot(stale)
 
     with col_b:
         st.metric("Balance", f"${balance:,.2f}")

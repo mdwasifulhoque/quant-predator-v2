@@ -3,17 +3,9 @@ ledger/reconciler.py
 ====================
 Broker-side trade journal reconstruction from MT5 history.
 
-Rebuilds trade_journal.csv entirely from mt5.history_deals_get().
-Run this when the journal is out-of-sync due to connectivity dropout,
-bot restart, or manual trades placed outside the bot.
-
-IMPROVEMENTS vs sync_ledger.py v1:
-    - Multi-symbol support (not hardcoded to EURUSD)
-    - 90-day lookback (was 21 days — too short for monthly reviews)
-    - Backup before wipe (no silent data destruction)
-    - Guard against empty deal history overwriting valid journal
-    - Uses StateManager for atomic write
-    - Indicator values preserved from journal if already present
+Rebuilds the trade_journal table (Postgres) entirely from
+mt5.history_deals_get(). Run this when the journal is out-of-sync due to
+connectivity dropout, bot restart, or manual trades placed outside the bot.
 
 RUN:
     python ledger/reconciler.py
@@ -22,12 +14,10 @@ RUN:
 from __future__ import annotations
 
 import os
-import shutil
 import sys
 from datetime import datetime, timedelta
 
 import MetaTrader5 as mt5
-import pandas as pd
 from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -40,22 +30,21 @@ logger = get_logger(__name__)
 
 
 def rebuild_journal(
-    symbol:       str = TradingConfig.ACTIVE_SYMBOL,
+    symbol:        str = TradingConfig.ACTIVE_SYMBOL,
     lookback_days: int = 90,
 ) -> bool:
     """
-    Downloads full deal history from MT5 and rebuilds trade_journal.csv.
+    Downloads full deal history from MT5 and rebuilds the trade_journal table.
 
     PROCESS:
         1. Fetch all deals for the bot's magic number in the lookback window.
         2. Group by position ticket (each round-trip = one position).
         3. Reconstruct entry and exit events with true net P&L.
-        4. Backup the existing journal before overwriting.
-        5. Write the new journal via StateManager (atomic).
-
-    Args:
-        symbol:        MT5 symbol to reconcile.
-        lookback_days: History window. 90 days covers most trading scenarios.
+        4. Back up the CURRENT journal (from Postgres) to a timestamped CSV
+           before wiping — preserves a rollback point without touching
+           the live data source.
+        5. Overwrite the journal via StateManager.overwrite_journal()
+           (single transaction — no partial-write risk).
 
     Returns:
         True on success; False on failure.
@@ -63,10 +52,7 @@ def rebuild_journal(
     Paths.ensure_dirs()
     state = StateManager()
 
-    logger.info(
-        f"Starting ledger reconciliation — "
-        f"{symbol} | last {lookback_days} days"
-    )
+    logger.info(f"Starting ledger reconciliation — {symbol} | last {lookback_days} days")
 
     # ── Fetch deal history ─────────────────────────────────────────────────────
     from_date = datetime.now() - timedelta(days=lookback_days)
@@ -77,10 +63,7 @@ def rebuild_journal(
         logger.error(f"MT5 history_deals_get failed: {mt5.last_error()}")
         return False
 
-    bot_deals = [
-        d for d in deals
-        if d.magic == BrokerConfig.MAGIC_NUMBER and d.symbol == symbol
-    ]
+    bot_deals = [d for d in deals if d.magic == BrokerConfig.MAGIC_NUMBER and d.symbol == symbol]
 
     if not bot_deals:
         logger.warning(
@@ -103,62 +86,65 @@ def rebuild_journal(
 
         entry_action = JournalConfig.BUY if entry.type == mt5.DEAL_TYPE_BUY else JournalConfig.SELL
         records.append({
-            "Timestamp":  datetime.fromtimestamp(entry.time).strftime("%Y-%m-%d %H:%M:%S"),
-            "Action":     entry_action,
-            "Price":      entry.price,
-            "Lot_Size":   entry.volume,
-            "SL":         0, "TP": 0,
-            "PnL":        0.0,
-            # Indicator values unknown at reconciliation time — preserved as 0
-            # These were only available at signal time in live_trader.py
+            "Timestamp": datetime.fromtimestamp(entry.time).strftime("%Y-%m-%d %H:%M:%S"),
+            "Action":    entry_action,
+            "Price":     entry.price,
+            "Lot_Size":  entry.volume,
+            "SL": 0, "TP": 0, "PnL": 0.0,
+            # Indicator values unknown at reconciliation time — MT5 doesn't
+            # record them; they only exist at signal-time in live_trader.py.
             "RSI": 0, "EMA_Dist": 0, "ATR": 0, "MTF_Align": 0,
-            "BB_Width": 0, "Bull_FVG": 0, "Bear_FVG": 0,
+            "BB_Width": 0, "Bull_FVG_Dist_ATR": 0, "Bear_FVG_Dist_ATR": 0,
         })
 
         if len(pos_deals) > 1:
-            exit_deal    = pos_deals[-1]
-            exit_action  = (
-                JournalConfig.BUY_CLOSE
-                if exit_deal.type == mt5.DEAL_TYPE_SELL
+            exit_deal   = pos_deals[-1]
+            exit_action = (
+                JournalConfig.BUY_CLOSE if exit_deal.type == mt5.DEAL_TYPE_SELL
                 else JournalConfig.SELL_CLOSE
             )
-            true_comm    = sum(d.commission for d in pos_deals)
-            true_swap    = sum(d.swap       for d in pos_deals)
-            raw_profit   = sum(d.profit     for d in pos_deals)
-            net_pnl      = raw_profit + true_comm + true_swap
+            true_comm  = sum(d.commission for d in pos_deals)
+            true_swap  = sum(d.swap       for d in pos_deals)
+            raw_profit = sum(d.profit     for d in pos_deals)
+            net_pnl    = raw_profit + true_comm + true_swap
 
             records.append({
-                "Timestamp":  datetime.fromtimestamp(exit_deal.time).strftime("%Y-%m-%d %H:%M:%S"),
-                "Action":     exit_action,
-                "Price":      exit_deal.price,
-                "Lot_Size":   exit_deal.volume,
-                "SL":         0, "TP": 0,
-                "PnL":        round(net_pnl, 2),
+                "Timestamp": datetime.fromtimestamp(exit_deal.time).strftime("%Y-%m-%d %H:%M:%S"),
+                "Action":    exit_action,
+                "Price":     exit_deal.price,
+                "Lot_Size":  exit_deal.volume,
+                "SL": 0, "TP": 0,
+                "PnL":       round(net_pnl, 2),
                 "RSI": 0, "EMA_Dist": 0, "ATR": 0, "MTF_Align": 0,
-                "BB_Width": 0, "Bull_FVG": 0, "Bear_FVG": 0,
+                "BB_Width": 0, "Bull_FVG_Dist_ATR": 0, "Bear_FVG_Dist_ATR": 0,
             })
 
     if not records:
         logger.warning("No records to write after processing deals.")
         return True
 
-    # ── Backup existing journal ───────────────────────────────────────────────
-    if os.path.exists(Paths.JOURNAL_FILE):
-        backup = Paths.JOURNAL_FILE.replace(".csv", f"_backup_{datetime.now():%Y%m%d_%H%M%S}.csv")
-        shutil.copy2(Paths.JOURNAL_FILE, backup)
-        logger.info(f"Existing journal backed up to {backup}")
+    # ── Backup current journal state before wiping ────────────────────────────
+    try:
+        current_df = state.read_journal()
+        if not current_df.empty:
+            backup_path = os.path.join(
+                Paths.LOGS_DIR, f"journal_backup_{datetime.now():%Y%m%d_%H%M%S}.csv"
+            )
+            current_df.to_csv(backup_path, index=False)
+            logger.info(f"Existing journal backed up to {backup_path}")
+    except Exception as exc:
+        logger.warning(f"Journal backup failed (non-fatal, continuing): {exc}")
 
-    # ── Write new journal ─────────────────────────────────────────────────────
-    df = pd.DataFrame(records, columns=JournalConfig.COLUMNS)
-    df.sort_values("Timestamp", inplace=True)
-    df.to_csv(Paths.JOURNAL_FILE, index=False)
-
-    logger.info(
-        f"Journal rebuilt successfully — "
-        f"{len(records)} records written "
-        f"({len(positions)} positions reconstructed)."
-    )
-    return True
+    # ── Overwrite journal (single transaction) ────────────────────────────────
+    success = state.overwrite_journal(records)
+    if success:
+        logger.info(
+            f"Journal rebuilt successfully — "
+            f"{len(records)} records written ({len(positions)} positions reconstructed)."
+        )
+    else:
+        logger.error("Journal overwrite failed — existing data preserved.")
+    return success
 
 
 if __name__ == "__main__":

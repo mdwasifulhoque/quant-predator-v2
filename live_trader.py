@@ -27,6 +27,8 @@ STOPPING:
 from __future__ import annotations
 
 import os
+print(f"[BOOT] PID={os.getpid()} PPID={os.getppid()}", flush=True)
+
 import sys
 import time
 from datetime import datetime, timezone
@@ -61,6 +63,56 @@ CLOSE_ON_EXIT = False
 # Deep data window: enough bars for D1 EMA200 warmup (4800) + inference window (24) + buffer
 DEEP_BARS = 6_025
 
+# ==============================================================================
+# SINGLE-INSTANCE LOCK
+# ==============================================================================
+LOCK_FILE = os.path.join(Paths.APP_STATE, "live_trader.lock")
+
+
+def _is_pid_running(pid: int) -> bool:
+    """Checks if a process with the given PID is currently running (Windows)."""
+    import subprocess
+    try:
+        output = subprocess.check_output(
+            ["tasklist", "/FI", f"PID eq {pid}"], text=True, stderr=subprocess.DEVNULL
+        )
+        return str(pid) in output
+    except Exception:
+        return False
+
+
+def _acquire_single_instance_lock() -> bool:
+    """
+    Refuses to start if another live_trader.py is already running, based on
+    a PID written to a lock file. Returns True if the lock was acquired
+    (safe to proceed), False if another instance is genuinely active.
+    """
+    if os.path.exists(LOCK_FILE):
+        try:
+            with open(LOCK_FILE, "r") as f:
+                old_pid = int(f.read().strip())
+            if _is_pid_running(old_pid):
+                logger.error(
+                    f"Another live_trader.py instance is already running (PID {old_pid}). "
+                    f"Refusing to start a second instance. Stop it first if this is unintended."
+                )
+                return False
+            else:
+                logger.warning(f"Stale lock file found (PID {old_pid} not running) — overwriting.")
+        except Exception:
+            logger.warning("Lock file unreadable — overwriting.")
+
+    with open(LOCK_FILE, "w") as f:
+        f.write(str(os.getpid()))
+    return True
+
+
+def _release_single_instance_lock() -> None:
+    try:
+        if os.path.exists(LOCK_FILE):
+            os.remove(LOCK_FILE)
+    except Exception:
+        pass
 
 class LiveTrader:
     """
@@ -86,7 +138,8 @@ class LiveTrader:
         self.current_position:    int   = 0      # -1 Short | 0 Flat | 1 Long
         self.entry_price:         float = 0.0
         self.active_lot_size:     float = 0.0
-        self.last_processed_time: Optional[datetime] = None
+        self.last_processed_time: Optional[datetime] = self.state.get_last_bar_time()
+        self._pending_bar_time_to_persist: Optional[datetime] = None
 
         # Signal / status strings for the dashboard
         self.ai_signal    = "STARTING"
@@ -109,6 +162,9 @@ class LiveTrader:
         then enters the main loop. Blocks until KeyboardInterrupt or fatal error.
         """
         Paths.ensure_dirs()
+
+        if not _acquire_single_instance_lock():
+            return
 
         # ── Connect to MT5 via gateway ─────────────────────────────────────────
         logger.info(f"Starting Quant Predator v2 — {self.symbol} H1")
@@ -146,6 +202,7 @@ class LiveTrader:
                 self._close_all_positions(reason="Script exit")
         finally:
             self.gateway.stop()
+            _release_single_instance_lock()
 
     # ==========================================================================
     # MAIN LOOP
@@ -220,21 +277,22 @@ class LiveTrader:
                 )
                 self._on_new_bar(symbol, config, auto_trade, acc)
                 self.last_processed_time = latest_time
-
+                self._pending_bar_time_to_persist = latest_time
         # ── 7. Live state update for dashboard ────────────────────────────────
         if acc:
-            tick         = self.gateway.symbol_info_tick(symbol)
+            tick = self.gateway.symbol_info_tick(symbol)
             floating_pnl = self._compute_floating_pnl(tick)
             self.state.update_live_state(
-                balance         = acc.balance,
-                floating_profit = floating_pnl,
-                open_position   = self.current_position,
-                ai_signal       = self.ai_signal,
-                news_status     = self.news_status,
-                mt5_ok          = (acc is not None),
-                ollama_ok       = self.llm.is_available(),
+                balance=acc.balance,
+                floating_profit=floating_pnl,
+                open_position=self.current_position,
+                ai_signal=self.ai_signal,
+                news_status=self.news_status,
+                mt5_ok=(acc is not None),
+                ollama_ok=self.llm.is_available(),
+                last_bar_time=getattr(self, "_pending_bar_time_to_persist", None),
             )
-
+            self._pending_bar_time_to_persist = None  # consumed — don't re-persist stale value every loop
     # ==========================================================================
     # NEW-BAR HANDLER
     # ==========================================================================
@@ -274,7 +332,10 @@ class LiveTrader:
         current_rsi       = float(closed_bar.get("RSI_14",         0.0))
         current_atr       = float(closed_bar.get("ATRr_14",        0.0010))
         current_ema_dist  = float(closed_bar.get("ema_200_dist",   0.0))
-        current_mtf       = float(closed_bar.get("MTF_Alignment",  0.0)) if "MTF_Alignment" in df.columns else 0.0
+        h1t = float(closed_bar.get("H1_Trend", 0.0))
+        h4t = float(closed_bar.get("H4_Trend", 0.0))
+        d1t = float(closed_bar.get("D1_Trend", 0.0))
+        current_mtf = h1t + h4t + d1t
         current_bb_width  = float(closed_bar.get("BB_Width",       0.0))
         current_price     = float(closed_bar.get("close",          0.0))
 
@@ -410,10 +471,16 @@ class LiveTrader:
             order_type  = mt5.ORDER_TYPE_SELL
 
         # R:R gate — minimum 1:1 enforced here; model learns to seek 2.5:1+ via reward
-        if risk_dist < min_sl_dist or reward_dist < risk_dist:
+        if risk_dist < min_sl_dist:
             logger.info(
-                f"Trade REJECTED — bad structural R:R "
-                f"(risk={risk_dist:.5f}, reward={reward_dist:.5f}, min={min_sl_dist:.5f})"
+                f"Trade REJECTED — stop too tight vs structural minimum "
+                f"(risk={risk_dist:.5f}, min_required={min_sl_dist:.5f})"
+            )
+            return
+        if reward_dist < risk_dist:
+            logger.info(
+                f"Trade REJECTED — unfavorable R:R "
+                f"(risk={risk_dist:.5f}, reward={reward_dist:.5f})"
             )
             return
 
@@ -512,48 +579,39 @@ class LiveTrader:
     # ==========================================================================
 
     def _manage_breakeven(self, symbol: str, positions) -> None:
-        """
-        Moves SL to entry price when a position has moved 1R in our favour.
-        Mirrors the breakeven logic in ForexTradingEnv.step() exactly.
-        """
         for pos in positions:
             if pos.magic != BrokerConfig.MAGIC_NUMBER:
                 continue
 
-            entry  = pos.price_open
-            cur    = pos.price_current
-            sl     = pos.sl
-            tp     = pos.tp
+            entry = pos.price_open
+            cur = pos.price_current
+            sl = pos.sl
+            tp = pos.tp
 
-            moved_to_breakeven = False
+            new_sl = None  # explicit — silences the warning and guards against future edits breaking the invariant
 
             if pos.type == mt5.ORDER_TYPE_BUY:
-                if sl > 0 and sl < entry:
+                if 0 < sl < entry:
                     initial_risk = entry - sl
                     if cur >= entry + initial_risk:
-                        moved_to_breakeven = True
                         new_sl = entry
             else:
-                if sl > 0 and sl > entry:
+                if sl > entry > 0:
                     initial_risk = sl - entry
                     if cur <= entry - initial_risk:
-                        moved_to_breakeven = True
                         new_sl = entry
 
-            if moved_to_breakeven:
+            if new_sl is not None:
                 req = {
-                    "action":   mt5.TRADE_ACTION_SLTP,
-                    "symbol":   symbol,
+                    "action": mt5.TRADE_ACTION_SLTP,
+                    "symbol": symbol,
                     "position": pos.ticket,
-                    "sl":       new_sl,
-                    "tp":       tp,
+                    "sl": new_sl,
+                    "tp": tp,
                 }
                 result = self.gateway.order_send(req)
                 if result.retcode == mt5.TRADE_RETCODE_DONE:
-                    logger.info(
-                        f"Breakeven secured for ticket {pos.ticket} "
-                        f"at {new_sl:.5f}. Trade is now risk-free."
-                    )
+                    logger.info(f"Breakeven secured for ticket {pos.ticket} at {new_sl:.5f}. Trade is now risk-free.")
 
     # ==========================================================================
     # MODEL LOADING
@@ -664,8 +722,8 @@ class LiveTrader:
                 atr       = ind.get("atr", 0.0),
                 mtf_align = ind.get("mtf_align", 0),
                 bb_width  = ind.get("bb_width", 0.0),
-                bull_fvg  = ind.get("bull_fvg", 0),
-                bear_fvg  = ind.get("bear_fvg", 0),
+                bull_fvg_dist_atr=ind.get("bull_fvg_dist_atr", 0.0),
+                bear_fvg_dist_atr=ind.get("bear_fvg_dist_atr", 0.0),
             )
             outcome = "TP HIT" if raw_profit > 0 else "SL HIT" if raw_profit < 0 else "BREAKEVEN"
             logger.trade(

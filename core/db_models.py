@@ -48,6 +48,7 @@ class LiveState(Base):
     mt5_ok = Column(Boolean, default=True)
     ollama_ok = Column(Boolean, default=False)
     last_update = Column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
+    last_bar_time = Column(DateTime(timezone=True), nullable=True)
 
     __table_args__ = (CheckConstraint("id = 1", name="live_state_singleton"),)
 

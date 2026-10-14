@@ -44,34 +44,36 @@ class StateManager:
     # ==========================================================================
 
     def update_live_state(
-        self,
-        balance: float,
-        floating_profit: float,
-        open_position: int,
-        ai_signal: str,
-        news_status: str,
-        mt5_ok: bool = True,
-        ollama_ok: bool = False,
+            self,
+            balance: float,
+            floating_profit: float,
+            open_position: int,
+            ai_signal: str,
+            news_status: str,
+            mt5_ok: bool = True,
+            ollama_ok: bool = False,
+            last_bar_time: Optional[datetime] = None,  # new param
     ) -> None:
-        """Upserts the singleton live_state row. Called every main loop iteration."""
-        pos_str = {1: "LONG", -1: "SHORT", 0: "FLAT"}.get(open_position, "FLAT")
+        ...
+        with get_session() as session:
+            row = session.get(LiveState, 1)
+            if row is None:
+                row = LiveState(id=1)
+                session.add(row)
+            ...
+            if last_bar_time is not None:
+                row.last_bar_time = last_bar_time
+            row.last_update = datetime.now(timezone.utc)
+
+    def get_last_bar_time(self):
+        """Returns the last processed H1 bar's timestamp, or None if never set."""
         try:
             with get_session() as session:
                 row = session.get(LiveState, 1)
-                if row is None:
-                    row = LiveState(id=1)
-                    session.add(row)
-                row.balance = round(balance, 2)
-                row.equity = round(balance + floating_profit, 2)
-                row.floating_profit = round(floating_profit, 2)
-                row.open_position = pos_str
-                row.ai_signal = ai_signal
-                row.news_status = news_status
-                row.mt5_ok = mt5_ok
-                row.ollama_ok = ollama_ok
-                row.last_update = datetime.now(timezone.utc)
+                return row.last_bar_time if row else None
         except Exception as exc:
-            logger.error(f"Failed to update live state: {exc}")
+            logger.error(f"Failed to read last_bar_time: {exc}")
+            return None
 
     def read_live_state(self) -> Dict[str, Any]:
         """Reads the current live_state row. Returns empty dict on failure.
@@ -219,6 +221,76 @@ class StateManager:
             logger.error(f"Failed to read trade journal: {exc}")
             return pd.DataFrame()
 
+    def read_journal(self) -> pd.DataFrame:
+        """Returns the full trade journal as a DataFrame. Empty DF on error."""
+        try:
+            with get_session() as session:
+                rows = session.execute(select(TradeJournalEntry)).scalars().all()
+                if not rows:
+                    return pd.DataFrame()
+                return pd.DataFrame([{
+                    "Timestamp": r.timestamp, "Action": r.action, "Price": r.price,
+                    "Lot_Size": r.lot_size, "SL": r.sl, "TP": r.tp, "PnL": r.pnl,
+                    "RSI": r.rsi, "EMA_Dist": r.ema_dist, "ATR": r.atr,
+                    "MTF_Align": r.mtf_align, "BB_Width": r.bb_width,
+                    "Bull_FVG_Dist_ATR": r.bull_fvg_dist_atr,
+                    "Bear_FVG_Dist_ATR": r.bear_fvg_dist_atr,
+                    "run_id": r.run_id,
+                } for r in rows])
+        except Exception as exc:
+            logger.error(f"Failed to read trade journal: {exc}")
+            return pd.DataFrame()
+
+    def overwrite_journal(self, records: list) -> bool:
+        """
+        Replaces the ENTIRE trade_journal table with the given records, in a
+        single transaction. Used by ledger/reconciler.py to rebuild the
+        journal from MT5 broker history when it may have drifted out of sync.
+
+        NOTE: wipes the whole table, not just rows for one symbol — the
+        current schema has no per-symbol column (single-symbol bot). If/when
+        multi-symbol support is added, this needs a WHERE-scoped delete
+        instead of a full wipe, matching rebuild_journal()'s symbol parameter.
+
+        `records` is a list of dicts using the same Title-Case keys as the
+        old CSV/JournalConfig.COLUMNS format (Timestamp, Action, Price,
+        Lot_Size, SL, TP, PnL, RSI, EMA_Dist, ATR, MTF_Align, BB_Width,
+        Bull_FVG_Dist_ATR, Bear_FVG_Dist_ATR) — mapped here to the actual
+        ORM column names.
+
+        Returns True on success, False on failure (existing data is
+        preserved on failure — delete + inserts happen in one transaction).
+        """
+        try:
+            with get_session() as session:
+                session.query(TradeJournalEntry).delete()
+                for r in records:
+                    session.add(TradeJournalEntry(
+                        timestamp=datetime.strptime(
+                            r["Timestamp"], "%Y-%m-%d %H:%M:%S"
+                        ).replace(tzinfo=timezone.utc),
+                        action=r.get("Action"),
+                        price=r.get("Price"),
+                        lot_size=r.get("Lot_Size"),
+                        sl=r.get("SL", 0),
+                        tp=r.get("TP", 0),
+                        pnl=r.get("PnL", 0.0),
+                        rsi=r.get("RSI", 0.0),
+                        ema_dist=r.get("EMA_Dist", 0.0),
+                        atr=r.get("ATR", 0.0),
+                        mtf_align=r.get("MTF_Align", 0),
+                        bb_width=r.get("BB_Width", 0.0),
+                        bull_fvg_dist_atr=r.get("Bull_FVG_Dist_ATR", 0.0),
+                        bear_fvg_dist_atr=r.get("Bear_FVG_Dist_ATR", 0.0),
+                    ))
+            return True
+        except Exception as exc:
+            logger.error(f"Failed to overwrite trade journal: {exc}")
+            return False
+
+    # ==========================================================================
+    # EVAL LOG (rolling live feed)
+    # ==========================================================================
     # ==========================================================================
     # EVAL LOG (rolling live feed)
     # ==========================================================================
